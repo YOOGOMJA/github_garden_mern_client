@@ -7,6 +7,9 @@ import { MdDateRange } from 'react-icons/md';
 
 import AttendanceByDay from './AttendanceByDay';
 import AttendanceRatesRank from './AttendanceRatesRank';
+import LanguageUsage from './LanguageUsage';
+import PopularRepositories from './PopularRepositories';
+import AttendentList from './AttendentList';
 
 import Logo from '../../components/Logo';
 
@@ -22,7 +25,7 @@ const index = () => {
                 </div>
                 <Jumbotron />
                 {/* 영역을 둘로 나눔 */}
-                <div className="flex-2 mt-3">
+                <div className="flex-2 mt">
                     <div className="flex-item">
                         <AttendanceRatesRank/>
                     </div>
@@ -31,10 +34,16 @@ const index = () => {
                     </div>
                 </div>
                 {/* 영역을 셋으로 나눔 */}
-                <div className="flex-3">
-                    <div className="flex-item">1</div>
-                    <div className="flex-item">2</div>
-                    <div className="flex-item">3</div>
+                <div className="flex-3 mt">
+                    <div className="flex-item">
+                        <LanguageUsage />
+                    </div>
+                    <div className="flex-item">
+                        <PopularRepositories/>
+                    </div>
+                    <div className="flex-item">
+                        <AttendentList/>
+                    </div>
                 </div>
             </div>
         </div>

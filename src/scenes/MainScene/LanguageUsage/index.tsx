@@ -6,11 +6,12 @@ import HighchartsReact from 'highcharts-react-official';
 const options:any ={
     title: undefined,
     chart: {
-        type: "column"
+        type: "pie"
     },
-    xAxis: {
-        type:"category"
-    },
+    // xAxis: {
+    //     type:"category"
+    // },
+    // legend: undefined,
     series: [
         {
             name: "출석률",
@@ -20,34 +21,20 @@ const options:any ={
                     let people = [];
                     for(var i = 1 ; i <= 10; i++){
                         people.push({
-                            name: 'person' + i,
+                            name: 'Language' + i,
                             y : i,
                         })    
                     }
                     return people;
                 })()
             ]
-        },
-        {
-            name: "평균",
-            type:"line",
-            data: [...(()=>{
-                let people = [];
-                for(var i = 1 ; i <= 10; i++){
-                    people.push({
-                        // name: 'person' + i,
-                        y : 5,
-                    })    
-                }
-                return people;
-            })()]
         }
     ]
 };
 
 const index = ()=>{
     return(<div style={ styles.container }>
-        <Card title="정원사 참여율">
+        <Card title="사용된 언어">
             {/* CARD BODY */}
             <div style={ styles.wrapper }>
                 <HighchartsReact

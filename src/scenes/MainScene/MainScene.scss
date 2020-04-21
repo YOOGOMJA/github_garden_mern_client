@@ -7,6 +7,7 @@
 }
 
 .contents{
+    overflow-y:auto;
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -113,7 +114,7 @@
         }
     }
 
-    .mt-3{
-        margin-top: 1.3em;
+    .mt{
+        margin-top: 2.5em;
     }
 }

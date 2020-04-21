@@ -19,15 +19,15 @@ const index: FunctionComponent<CardProps> = props => {
 const styles: { [name: string]: CSSProperties } = {
     container: {
         backgroundColor:'#fff',
-        minHeight:'200px',
+        minHeight:'50px',
         boxShadow:"rgba(0, 0, 0, .2) 2px 2px 3px 0px",
-        padding: '10px 10px',
-        marginRight: '10px',
+        padding: '15px 20px',
+        marginRight: '30px',
     },
     wrapper: {
         marginTop:'10px',
-        backgroundColor:'red',
-        height:'300px',
+        // backgroundColor:'red',
+        // height:'300px',
     }
 }
 

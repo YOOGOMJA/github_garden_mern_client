@@ -14,7 +14,7 @@ const Title = (props:CardTitleProps) => {
 
 const styles:{ [name:string]:CSSProperties } = {
     title: {
-        fontSize:'1.2em',
+        fontSize:'1.5em',
         margin:0,
         padding:0,
         fontWeight:'initial',
