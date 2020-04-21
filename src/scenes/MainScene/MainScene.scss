@@ -1,0 +1,119 @@
+.main-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+
+    // background-color: #fff;
+}
+
+.contents{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 50px;
+    .header{
+        margin-bottom: 50px;
+        h1{
+            margin: 0;
+            padding: 0;
+            font-weight: 100;
+            color: #28ae60;
+            font-size: 3.2em;
+        }
+    }
+
+    .jumbotron{
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        .jumbotron-item{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            border-radius: 15px;
+            min-width: 160px;
+            // height: 130px;
+            margin-right: 20px;
+            box-shadow: 2px 2px 4px 0px #6a8fb1b5;
+            padding: 10px 30px;
+            color:white;
+
+            p{ margin:0;padding:0; }
+
+            .title{
+                font-weight: 600;
+                font-size: 1.2em;
+                flex:2;
+                display: flex;
+                align-items: center;
+                text-align: center;
+            }
+
+            .jumbotron-item-body{    
+                display: flex;
+                // justify-content: flex-end;
+                flex-direction: row;
+                align-items: flex-end;
+                flex:3;
+
+                .count{
+                    font-weight: 800;
+                    font-size: 2em;
+                }
+                .desc{
+                    font-weight: 300;
+                }
+            }
+            
+
+            &.projects{
+                background-color: #f1c40f;
+                // .count{
+                //     color: #f39c12;
+                // }
+            }
+            &.participants{
+                background-color: #1abc9c;
+                // .count{
+                //     color: #1abc9c;
+                // }
+            }
+            &.commits{
+                background-color: #3498db;
+                // .count{
+                //     color: #9b59b6;
+                // }
+            }
+            &.period{
+                background-color: #9b59b6;
+            }
+        }
+    }
+
+    @mixin flex-box($direction){
+        display:flex;
+        flex-direction: $direction;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .flex-2{
+        @include flex-box('row');
+        justify-content: space-between;
+        .flex-item{
+            flex:6;
+        }
+    }
+    .flex-3{
+        @include flex-box('row');
+        justify-content: space-between;
+        .flex-item{
+            flex:4;
+        }
+    }
+
+    .mt-3{
+        margin-top: 1.3em;
+    }
+}
