@@ -4,10 +4,10 @@ import Colors from '../../../components/Colors.json';
 
 const index = ()=>{
     return(<div style={ styles.container }>
-        <Card title="요즘 힙한 저장소" desc="현재 가장 활발한 활동을 보이고 있는 저장소들 입니다">
+        <Card title="DSC에서 진행중인 저장소" desc="현재 DSC에서 진행중인 프로젝트의 저장소입니다">
             <div style={ styles.wrapper }>
                 <div style={ itemStyles.container }>
-                    <p style={{...itemStyles.text, ...itemStyles.owner} }>YOOGOMJA/</p>
+                    <p style={{...itemStyles.text, ...itemStyles.owner} }>dsk-shamyook/</p>
                     <p style={{...itemStyles.text, ...itemStyles.title} }>github-farm-mern</p>
                     <div style={ itemStyles.factorContainer}>
                         <div style={ itemStyles.factorItemContainer }>
@@ -35,7 +35,6 @@ const styles:{ [name:string]: CSSProperties } = {
     },
     wrapper: {
         // marginTop: '1em',
-        
     }
 }
 
@@ -56,7 +55,7 @@ const itemStyles:{[name:string]: CSSProperties} = {
         fontSize:'.7em',
     },
     container: {
-        backgroundColor: "#27ae60",
+        backgroundColor: Colors.blue,
         minHeight:'100px',
         borderRadius: '10px',
         padding: '12px 25px',

@@ -33,7 +33,7 @@ const options:any ={
 
 const index = ()=>{
     return(<div style={ styles.container }>
-        <Card title="일별 출석률">
+        <Card title="일별 출석률" desc="정원사분들의 일별 출석율 현황을 보여줍니다">
             {/* CARD BODY */}
             <div style={ styles.wrapper }>
                 <HighchartsReact
@@ -47,7 +47,7 @@ const index = ()=>{
 
 const styles:{ [name:string]: CSSProperties } = {
     container: {
-        
+        height:'100%',
     },
     wrapper: {
         marginTop: '2em',

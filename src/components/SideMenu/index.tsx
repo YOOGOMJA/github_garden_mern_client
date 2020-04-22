@@ -2,8 +2,9 @@ import React from 'react';
 
 import { MdDashboard, MdSettings, MdInfo, MdFace,MdQueue } from 'react-icons/md';
 import { FaGithub } from 'react-icons/fa';
-import Logo from "../../../components/Logo";
+import Logo from "../Logo";
 import './SideMenu.scss';
+import { NavLink } from 'react-router-dom';
 
 const index = () => {
     return (
@@ -14,21 +15,21 @@ const index = () => {
             {/* 버튼 위치 */}
             <ul className="menu">
                 <li >
-                    <a className="active" href="#1">
+                    <NavLink exact={true} activeClassName="active" to="/">
                         <MdDashboard />
-                    </a>
+                    </NavLink>
                 </li>
 
                 <li>
-                    <a  href="#1">
+                    <NavLink activeClassName="active" to="/users">
                         <MdFace />
-                    </a>
+                    </NavLink>
                 </li>
 
                 <li>
-                    <a  href="#1">
+                    <NavLink activeClassName="active" to="/register">
                         <MdQueue />
-                    </a>
+                    </NavLink>
                 </li>
             </ul>
             <ul className="config">

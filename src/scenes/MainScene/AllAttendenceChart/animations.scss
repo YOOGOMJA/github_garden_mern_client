@@ -1,0 +1,10 @@
+.attendenceChartBody{
+    tr{
+        background-color: none;
+        transition: .1s;
+        &:hover{
+            background-color: #27ae60;
+            transition: .1s;
+        }
+    }
+}
