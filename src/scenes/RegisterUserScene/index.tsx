@@ -1,8 +1,6 @@
 import React, { CSSProperties, useState } from 'react';
 import Colors from '../../components/Colors.json';
-import HeaderImg from '../../components/HeaderImg';
-
-
+import RegistUser from './RegistUser';
 
 const Index = () => {
     const [ errorMesg, setErrorMesg ] = useState("오류입니다");
@@ -16,7 +14,7 @@ const Index = () => {
             </h1>
             <p style={ { ...styles.text, ...stHeader.desc } }>처음오셨나요? github 계정명을 입력해주시면 참여할 수 있습니다!</p>
             {/* <HeaderImg/> */}
-            <div style={ stHeader.inputContainer }>
+            {/* <div style={ stHeader.inputContainer }>
                 {
                     (()=>{
                         if(errorMesg !== ""){
@@ -28,8 +26,8 @@ const Index = () => {
                     <input style={ stHeader.input } type="text" placeholder="github 계정명을 입력해주세요"/>
                     <button style={ stHeader.inputBtn } type="button">등록</button>
                 </div>
-            </div>
-            
+            </div> */}
+           <RegistUser/> 
         </div>
     </div>);
 }
@@ -90,8 +88,8 @@ const stHeader: { [name:string]: CSSProperties } = {
         fontSize:'3em',
         fontWeight:100,
         width:'100%',
-        borderBottom:'1px solid #fff',
-        color:Colors.text.highlight,
+        borderBottom:'1px solid ' + Colors.text.highlight,
+        color:Colors.text.default,
         flex:9
     },
     inputBtn:{
