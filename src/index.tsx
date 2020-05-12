@@ -13,29 +13,38 @@ import UserNotFoundScene from './scenes/UserNotFoundScene';
 
 import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
 
+import { createStore, applyMiddleware } from 'redux';
+import { Provider } from 'react-redux';
+import Thunk from 'redux-thunk';
+import rootReducer from './modules';
+
+const store = createStore(rootReducer, applyMiddleware(Thunk));
+
 ReactDOM.render(
   <React.StrictMode>
-    <div style={ { height : 'fit-content', } }>
-      <Router>
-        <SideMenu />
-        <Switch>
-          <Route exact path="/" component={MainScene} />
-          <Route path="/register" component={RegisterUserScene} />
-          <Route path="/users">
-            <Switch>
-              {/* 목록 페이지 */}
-              <Route exact path="/users/" component={UserListScene}/>
-              {/* 유저 404 페이지 */}
-              <Route exact path="/users/404-not-found" component={ UserNotFoundScene } />
-              {/* 유저별 상세 페이지  */}
-              <Route path="/users/:user_name" component={ UserDetailScene }/>
-            </Switch>
-          </Route>
-          <Route path="*" component={NotFoundScene}/>
-        </Switch>
-        
-      </Router>
-    </div>
+    <Provider store={store}>
+      <div style={{ height: 'fit-content', }}>
+        <Router>
+          <SideMenu />
+          <Switch>
+            <Route exact path="/" component={MainScene} />
+            <Route path="/register" component={RegisterUserScene} />
+            <Route path="/users">
+              <Switch>
+                {/* 목록 페이지 */}
+                <Route exact path="/users/" component={UserListScene} />
+                {/* 유저 404 페이지 */}
+                <Route exact path="/users/404-not-found" component={UserNotFoundScene} />
+                {/* 유저별 상세 페이지  */}
+                <Route path="/users/:user_name" component={UserDetailScene} />
+              </Switch>
+            </Route>
+            <Route path="*" component={NotFoundScene} />
+          </Switch>
+
+        </Router>
+      </div>
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );

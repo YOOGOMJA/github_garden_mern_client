@@ -18,20 +18,23 @@ const index = () => {
         <div style={styles.container}>
             <div style={styles.headerWrapper}>
                 <table style={styles.headerTable}>
-                    <tr >
-                        <th style={{ ...styles.headerTitleEssential, width: '50px' }}>순위</th>
-                        <th style={{ ...styles.headerTitleEssential, width: '100px' }}>정원사</th>
-                        <th style={{ ...styles.headerTitleEssential, width: '50px' }}>출석률</th>
-                        {
-                            dates.map(item => {
-                                return <th style={styles.headerTitle}>{item.format('MM/DD')}</th>
-                            })
-                        }
-                    </tr>
+                    <thead>
+                        <tr >
+                            <th style={{ ...styles.headerTitleEssential, width: '50px' }}>순위</th>
+                            <th style={{ ...styles.headerTitleEssential, width: '100px' }}>정원사</th>
+                            <th style={{ ...styles.headerTitleEssential, width: '50px' }}>출석률</th>
+                            {
+                                dates.map(item => {
+                                    return <th style={styles.headerTitle}>{item.format('MM/DD')}</th>
+                                })
+                            }
+                        </tr>
+                    </thead>
                 </table>
             </div>
             <div style={styles.contentWrapper}>
                 <table className="attendenceChartBody" style={styles.headerTable}>
+                    <tbody>
                     {
                         people.map((person, idx) => {
                             return (
@@ -48,6 +51,7 @@ const index = () => {
                             )
                         })
                     }
+                    </tbody>
                 </table>
             </div>
         </div>

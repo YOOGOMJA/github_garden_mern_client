@@ -1,10 +1,8 @@
-import React, { CSSProperties } from 'react'
+import React, { CSSProperties, useEffect } from 'react'
 import "./MainScene.scss";
 import './highcharts-additional.scss';
 
-import SideMenu from '../../components/SideMenu';
 import Jumbotron from './Jumbotron';
-import { MdDateRange } from 'react-icons/md';
 
 import AttendanceByDay from './AttendanceByDay';
 import AttendanceRatesRank from './AttendanceRatesRank';
@@ -13,9 +11,20 @@ import PopularRepositories from './PopularRepositories';
 import AttendentList from './AttendentList';
 import DSCFeaturedRepositories from './DSCFeaturedRepositories';
 import AllAttendenceChart from './AllAttendenceChart';
-import Logo from '../../components/Logo';
 
-const index = () => {
+import { useDispatch, useSelector } from 'react-redux';
+import { getSummaryThunk, getAllAttendancesThunk } from '../../modules/analytics';
+import { RootState } from '../../modules';
+
+const MainScene = (props: any) => {
+    const { summary, all_attendances } = useSelector((state:RootState)=>state.analytics);
+    const dispatch = useDispatch();
+
+    useEffect(()=>{
+        dispatch(getSummaryThunk());
+        dispatch(getAllAttendancesThunk());
+    },[dispatch]);
+    
     return (
         <div className="contents">
             <div className="header">
@@ -23,7 +32,7 @@ const index = () => {
                     안녕하세요! <b>정원사 프로젝트</b>입니다!
                 </h1>
             </div>
-            <Jumbotron />
+            <Jumbotron summary={ summary.data } error={summary.error} loading={ summary.loading }/>
             {/* 영역을 둘로 나눔 */}
             <div className="flex-2 mt">
                 <div className="flex-item">
@@ -42,12 +51,12 @@ const index = () => {
                     <PopularRepositories />
                     <DSCFeaturedRepositories />
                 </div>
-                <div className="flex-item" style={ { flex:3 } }>
+                <div className="flex-item" style={{ flex: 3 }}>
                     <AttendentList />
                 </div>
             </div>
             <div className="mt">
-                <AllAttendenceChart/>
+                <AllAttendenceChart />
             </div>
         </div>
     );
@@ -62,4 +71,4 @@ const styles: { [name: string]: React.CSSProperties } = {
     }
 }
 
-export default index;
+export default MainScene;
