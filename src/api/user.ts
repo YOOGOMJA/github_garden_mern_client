@@ -12,8 +12,15 @@ export async function getUserInfo(user_name: string) {
     return response.data;
 }
 
-export async function getUsers() {
-    const response = await axios.get<UserInfo>(`${REACT_API_HOST}/api/users`);
+export async function getUsersInfo() {
+    const response = await axios.get<UsersInfo>(`${REACT_API_HOST}/api/users`);
+    return response.data;
+}
+
+export async function postUserInfo(user_name: string){
+    const response = await axios.post<GitFarmResponseInterface>(
+        `${REACT_API_HOST}/api/users/${user_name}`
+    );
     return response.data;
 }
 

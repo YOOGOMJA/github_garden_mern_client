@@ -18,6 +18,13 @@ export async function getAllAttendances(){
     return res.data;
 }
 
+export async function getLanguagesPopularity(){
+    const res = await axios.get<Languages>(
+        `${REACT_API_HOST}/api/analysis/languages`
+    );
+    return res.data;
+}
+
 interface SummaryInterface{
     // 현재 저장된 저장소 수 
     repo_cnt: Number,
@@ -40,10 +47,20 @@ interface AllAttendancesInterface{
     attendances: {[date: string]: Number},
 }
 
+interface LanguagePopularityInterface{
+    _id: { language_name : string },
+    rate : Number,
+    rate_percentage: Number,
+}
+
 export interface Summary extends GitFarmResponseInterface{
     data: SummaryInterface
 }
 
 export interface AllAttendances extends GitFarmResponseInterface{
     data: [AllAttendancesInterface]
+}
+
+export interface Languages extends GitFarmResponseInterface{
+    data: [LanguagePopularityInterface]
 }

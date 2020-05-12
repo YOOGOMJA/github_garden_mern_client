@@ -14,7 +14,7 @@ const Jumbotron = (props:JumbotronInterface) => {
             <div className="jumbotron">
                 {/* 진행중인 정원사 일정 수 */}
                 <div className="jumbotron-item projects">
-                    <p className="title">등록된 저장소들💻</p>
+                    <p className="title">등록된 저장소💻</p>
                     {/* <MdDateRange/> */}
                     <div className="jumbotron-item-body">
                         <p className="count">{ props.summary ? props.summary.data.repo_cnt : 0 }</p>

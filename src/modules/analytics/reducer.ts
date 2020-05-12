@@ -1,5 +1,5 @@
 import { createReducer, action } from "typesafe-actions";
-import { SummaryState, AnalyticsAction, AllAttendancesState, AnalyticsState } from "./types";
+import { AnalyticsAction, AnalyticsState } from "./types";
 import {
     GET_SUMMARY,
     GET_SUMMARY_ERROR,
@@ -7,6 +7,9 @@ import {
     GET_ALL_ATTENDANCES,
     GET_ALL_ATTENDANCES_ERROR,
     GET_ALL_ATTENDANCES_SUCCESS,
+    GET_LANGUAGES_POPULARITY,
+    GET_LANGUAGES_POPULARITY_SUCCESS,
+    GET_LANGUAGES_POPULARITY_ERROR,
 } from "./actions";
 
 const intialState:AnalyticsState = {
@@ -18,6 +21,11 @@ const intialState:AnalyticsState = {
     all_attendances:{
         loading: false,
         error: null,
+        data: null,
+    },
+    languages: {
+        loading: false,
+        error : null,
         data: null,
     }
 }
@@ -66,6 +74,31 @@ const analytics = createReducer<AnalyticsState, AnalyticsAction>(intialState, {
     [GET_ALL_ATTENDANCES_ERROR]:(state, action)=>({
         ...state,
         all_attendances:{
+            loading:false,
+            error: action.payload,
+            data: null,
+        }
+    }),
+    // 언어 사용률 조회
+    [GET_LANGUAGES_POPULARITY]:state=>({
+        ...state,
+        languages:{
+            loading:true,
+            error:null,
+            data:null,
+        },
+    }),
+    [GET_LANGUAGES_POPULARITY_SUCCESS]:(state,action)=>({
+        ...state, 
+        languages:{
+            loading: false,
+            error: null,
+            data: action.payload
+        }
+    }),
+    [GET_LANGUAGES_POPULARITY_ERROR]:(state, action)=>({
+        ...state,
+        languages:{
             loading:false,
             error: action.payload,
             data: null,

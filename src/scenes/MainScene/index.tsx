@@ -10,19 +10,23 @@ import LanguageUsage from './LanguageUsage';
 import PopularRepositories from './PopularRepositories';
 import AttendentList from './AttendentList';
 import DSCFeaturedRepositories from './DSCFeaturedRepositories';
-import AllAttendenceChart from './AllAttendenceChart';
+import AllAttendanceChart from './AllAttendanceChart';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { getSummaryThunk, getAllAttendancesThunk } from '../../modules/analytics';
+import { getSummaryThunk, getAllAttendancesThunk, getLanguagesPopularityThunk } from '../../modules/analytics';
+import { getUsersInfoThunk } from '../../modules/user';
 import { RootState } from '../../modules';
 
 const MainScene = (props: any) => {
-    const { summary, all_attendances } = useSelector((state:RootState)=>state.analytics);
+    const { summary, all_attendances, languages } = useSelector((state:RootState)=>state.analytics);
+    const { users } = useSelector((state:RootState)=>state.user);
     const dispatch = useDispatch();
 
     useEffect(()=>{
         dispatch(getSummaryThunk());
         dispatch(getAllAttendancesThunk());
+        dispatch(getLanguagesPopularityThunk());
+        dispatch(getUsersInfoThunk());
     },[dispatch]);
     
     return (
@@ -36,7 +40,7 @@ const MainScene = (props: any) => {
             {/* 영역을 둘로 나눔 */}
             <div className="flex-2 mt">
                 <div className="flex-item">
-                    <AttendanceRatesRank />
+                    <AttendanceRatesRank attendances={ all_attendances.data }/>
                 </div>
                 <div className="flex-item">
                     <AttendanceByDay />
@@ -45,18 +49,18 @@ const MainScene = (props: any) => {
             {/* 영역을 셋으로 나눔 */}
             <div className="flex-3 mt">
                 <div className="flex-item">
-                    <LanguageUsage />
+                    <LanguageUsage languages={ languages.data } error={ languages.error } loading={ languages.loading } />
                 </div>
                 <div className="flex-item" style={styles.columns}>
                     <PopularRepositories />
                     <DSCFeaturedRepositories />
                 </div>
                 <div className="flex-item" style={{ flex: 3 }}>
-                    <AttendentList />
+                    <AttendentList users={users.data} />
                 </div>
             </div>
             <div className="mt">
-                <AllAttendenceChart />
+                <AllAttendanceChart attendances={ all_attendances.data }/>
             </div>
         </div>
     );
