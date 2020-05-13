@@ -24,6 +24,18 @@ export async function postUserInfo(user_name: string){
     return response.data;
 }
 
+export async function getUsersSearch(user_name:string){
+    const reponse = await axios.get<UsersInfo>(
+        `${REACT_API_HOST}/api/users/search`,
+        {
+            params: {
+                user_name : user_name.trim()
+            }
+        }
+    );
+    return reponse.data;
+}
+
 export interface UsersInfo extends GitFarmResponseInterface{
     data: [UserInfoInterface]
 }

@@ -21,4 +21,9 @@ export type UserState = {
         error : Error | null,
         data: GitFarmResponse | null,
     },
+    searched_users :{
+        loading: boolean,
+        error : Error | null,
+        data : UsersInfo | null,
+    }
 };

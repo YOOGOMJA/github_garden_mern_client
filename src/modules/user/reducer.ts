@@ -13,6 +13,11 @@ import {
     CLEAR_POST_USER_INFO,
     CLEAR_USER_INFO,
     CLEAR_USERS_INFO,
+
+    GET_USERS_SEARCH,
+    GET_USERS_SEARCH_SUCCESS,
+    GET_USERS_SEARCH_ERROR,
+    CLEAR_USERS_SEARCH,
 } from "./actions";
 
 const initialState: UserState = {
@@ -31,6 +36,11 @@ const initialState: UserState = {
         error: null,
         data: null,
     },
+    searched_users:{
+        loading: false,
+        error: null,
+        data: null,
+    }
 };
 
 const user = createReducer<UserState, UserAction>(initialState, {
@@ -120,6 +130,37 @@ const user = createReducer<UserState, UserAction>(initialState, {
         ...state,
         post_user : {
             ...initialState.post_user
+        }
+    }),
+    // 사용자 검색하기
+    [GET_USERS_SEARCH]: (state) => ({
+        ...state,
+        searched_users: {
+            loading: true,
+            error: null,
+            data: null,
+        },
+    }),
+    [GET_USERS_SEARCH_SUCCESS]: (state, action) => ({
+        ...state,
+        searched_users: {
+            loading: false,
+            error: null,
+            data: action.payload,
+        },
+    }),
+    [GET_USERS_SEARCH_ERROR]: (state, action) => ({
+        ...state,
+        searched_users: {
+            loading: false,
+            error: action.payload,
+            data: null,
+        },
+    }),
+    [CLEAR_USERS_SEARCH]: (state:any)=>({
+        ...state,
+        searched_users : {
+            ...initialState.searched_users
         }
     })
 });

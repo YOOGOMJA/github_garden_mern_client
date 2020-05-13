@@ -11,6 +11,11 @@ export const GET_USERS_INFO = 'user/GET_USERS_INFO';
 export const GET_USERS_INFO_SUCCESS = 'user/GET_USERS_INFO_SUCCESS';
 export const GET_USERS_INFO_ERROR = 'user/GET_USERS_INFO_ERROR';
 
+export const GET_USERS_SEARCH = 'user/GET_USERS_SEARCH';
+export const GET_USERS_SEARCH_SUCCESS = 'user/GET_USERS_SEARCH_SUCCESS';
+export const GET_USERS_SEARCH_ERROR = 'user/GET_USERS_SEARCH_ERROR';
+export const CLEAR_USERS_SEARCH = 'user/CLEAR_USERS_SEARCH';
+
 export const POST_USER_INFO = 'user/POST_USER_INFO';
 export const POST_USER_INFO_SUCCESS = 'user/POST_USER_INFO_SUCCESS';
 export const POST_USER_INFO_ERROR = 'user/POST_USER_INFO_ERROR';
@@ -40,3 +45,10 @@ export const postUserInfoAsync = createAsyncAction(
     POST_USER_INFO_ERROR,
     CLEAR_POST_USER_INFO,
 )<undefined, GitFarmResponse ,AxiosError, undefined>();
+
+export const getUsersSearchAsync = createAsyncAction(
+    GET_USERS_SEARCH,
+    GET_USERS_SEARCH_SUCCESS,
+    GET_USERS_SEARCH_ERROR,
+    CLEAR_USERS_SEARCH,
+)<undefined, UsersInfo, AxiosError, undefined>();
