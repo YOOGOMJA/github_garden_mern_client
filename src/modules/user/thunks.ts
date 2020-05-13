@@ -2,7 +2,7 @@ import { ThunkAction } from 'redux-thunk';
 import { RootState } from '..';
 import { UserAction } from './types';
 import { getUserInfo, getUsersInfo, postUserInfo } from '../../api/user';
-import { getUserInfoAsync, getUsersInfoAsync, postUserInfoAsync } from './actions';
+import { getUserInfoAsync, getUsersInfoAsync, postUserInfoAsync, CLEAR_POST_USER_INFO, CLEAR_USER_INFO, CLEAR_USERS_INFO } from './actions';
 
 export function getUserInfoThunk(user_name:string): ThunkAction<void, RootState, null, UserAction>{
     return async dispatch => {
@@ -16,6 +16,27 @@ export function getUserInfoThunk(user_name:string): ThunkAction<void, RootState,
             dispatch(failure(e));
         }
     };
+}
+
+export function clearUserInfoThunk():ThunkAction<void, RootState, null, UserAction>{
+    return dispatch=>{
+        const { cancel } = getUserInfoAsync;
+        dispatch(cancel());
+    }
+}
+
+export function clearUsersInfoThunk():ThunkAction<void, RootState, null, UserAction>{
+    return dispatch=>{
+        const { cancel } = getUsersInfoAsync;
+        dispatch(cancel());
+    }
+}
+
+export function clearPostUserInfoThunk():ThunkAction<void, RootState, null, UserAction>{
+    return dispatch=>{
+        const { cancel } = postUserInfoAsync;
+        dispatch(cancel());
+    }
 }
 
 export function getUsersInfoThunk():ThunkAction<void, RootState, null, UserAction>{

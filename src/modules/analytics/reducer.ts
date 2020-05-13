@@ -1,4 +1,4 @@
-import { createReducer, action } from "typesafe-actions";
+import { createReducer } from "typesafe-actions";
 import { AnalyticsAction, AnalyticsState } from "./types";
 import {
     GET_SUMMARY,
@@ -7,9 +7,18 @@ import {
     GET_ALL_ATTENDANCES,
     GET_ALL_ATTENDANCES_ERROR,
     GET_ALL_ATTENDANCES_SUCCESS,
+    GET_ALL_ATTENDANCES_BY_DATES,
+    GET_ALL_ATTENDANCES_BY_DATES_SUCCESS,
+    GET_ALL_ATTENDANCES_BY_DATES_ERROR,
     GET_LANGUAGES_POPULARITY,
     GET_LANGUAGES_POPULARITY_SUCCESS,
     GET_LANGUAGES_POPULARITY_ERROR,
+    GET_POPULAR_REPOSITORY,
+    GET_POPULAR_REPOSITORY_SUCCESS,
+    GET_POPULAR_REPOSITORY_ERROR,
+    GET_FEATURED_REPOSITORY,
+    GET_FEATURED_REPOSITORY_SUCCESS,
+    GET_FEATURED_REPOSITORY_ERROR,
 } from "./actions";
 
 const intialState:AnalyticsState = {
@@ -27,6 +36,21 @@ const intialState:AnalyticsState = {
         loading: false,
         error : null,
         data: null,
+    },
+    featured_repo: {
+        loading: false,
+        error :null,
+        data: null,
+    },
+    popular_repo: {
+        loading: false,
+        error : null,
+        data : null,
+    },
+    all_attendances_by_dates: {
+        loading : false,
+        error : null,
+        data : null,
     }
 }
 
@@ -55,6 +79,7 @@ const analytics = createReducer<AnalyticsState, AnalyticsAction>(intialState, {
             data: null,
         }
     }),
+    // 모든 인원의 참석률 
     [GET_ALL_ATTENDANCES]:state=>({
         ...state,
         all_attendances:{
@@ -74,6 +99,31 @@ const analytics = createReducer<AnalyticsState, AnalyticsAction>(intialState, {
     [GET_ALL_ATTENDANCES_ERROR]:(state, action)=>({
         ...state,
         all_attendances:{
+            loading:false,
+            error: action.payload,
+            data: null,
+        }
+    }),
+    // 일자별 참석률 
+    [GET_ALL_ATTENDANCES_BY_DATES]:state=>({
+        ...state,
+        all_attendances_by_dates:{
+            loading:true,
+            error:null,
+            data:null,
+        },
+    }),
+    [GET_ALL_ATTENDANCES_BY_DATES_SUCCESS]:(state,action)=>({
+        ...state, 
+        all_attendances_by_dates:{
+            loading: false,
+            error: null,
+            data: action.payload
+        }
+    }),
+    [GET_ALL_ATTENDANCES_BY_DATES_ERROR]:(state, action)=>({
+        ...state,
+        all_attendances_by_dates:{
             loading:false,
             error: action.payload,
             data: null,
@@ -104,6 +154,56 @@ const analytics = createReducer<AnalyticsState, AnalyticsAction>(intialState, {
             data: null,
         }
     }),
+    // 유명한 저장소 
+    [GET_POPULAR_REPOSITORY]:state=>({
+        ...state,
+        popular_repo:{
+            loading:true,
+            error:null,
+            data:null
+        }
+    }),
+    [GET_POPULAR_REPOSITORY_SUCCESS]:(state,action)=>({
+        ...state, 
+        popular_repo:{
+            loading: false,
+            error: null,
+            data: action.payload
+        }
+    }),
+    [GET_POPULAR_REPOSITORY_ERROR]:(state, action)=>({
+        ...state,
+        popular_repo:{
+            loading:false,
+            error: action.payload,
+            data: null
+        }
+    }),
+    // 인증 저장소 
+    [GET_FEATURED_REPOSITORY]:state=>({
+        ...state,
+        featured_repo:{
+            loading:true,
+            error:null,
+            data:null,
+        }
+    }),
+    [GET_FEATURED_REPOSITORY_SUCCESS]:(state,action)=>({
+        ...state, 
+        featured_repo:{
+            loading: false,
+            error: null,
+            data: action.payload
+        }
+    }),
+    [GET_FEATURED_REPOSITORY_ERROR]:(state, action)=>({
+        ...state,
+        featured_repo:{
+            loading:false,
+            error: action.payload,
+            data: null,
+        }
+    })
 });
 
 export default analytics;

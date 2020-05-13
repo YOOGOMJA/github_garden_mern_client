@@ -15,14 +15,14 @@ const AllAttendanceChart = (props: AllAttendanceChartProps) => {
 
     useEffect(() => {
         if(props.attendances){
-            console.log(props.attendances.data);
+            // console.log(props.attendances.data);
             let newDates: moment.Moment[] = [];
             Object.keys(props.attendances.data[0].attendances).forEach(key=>{
                 newDates.push(moment(key));
             });
             setDisplayDates(newDates);
         }
-    }, [props]);
+    }, [props.attendances]);
 
     const getDateFormat = (date:moment.Moment)=>{
         return date.format("MM/DD");

@@ -15,21 +15,28 @@ export const POST_USER_INFO = 'user/POST_USER_INFO';
 export const POST_USER_INFO_SUCCESS = 'user/POST_USER_INFO_SUCCESS';
 export const POST_USER_INFO_ERROR = 'user/POST_USER_INFO_ERROR';
 
+export const CLEAR_USER_INFO = "user/CLEAR_USER_INFO";
+export const CLEAR_USERS_INFO = "user/CLEAR_USERS_INFO";
+export const CLEAR_POST_USER_INFO = 'user/CLEAR_POST_USER_INFO';
+
 // 비동기 액션 생성
 export const getUserInfoAsync = createAsyncAction(
     GET_USER_INFO,
     GET_USER_INFO_SUCCESS,
-    GET_USER_INFO_ERROR
-)<undefined, UserInfo, AxiosError>();
+    GET_USER_INFO_ERROR,
+    CLEAR_USER_INFO,
+)<undefined, UserInfo, AxiosError, undefined>();
 
 export const getUsersInfoAsync = createAsyncAction(
     GET_USERS_INFO,
     GET_USERS_INFO_SUCCESS,
-    GET_USERS_INFO_ERROR
-)<undefined, UsersInfo, AxiosError>();
+    GET_USERS_INFO_ERROR,
+    CLEAR_USERS_INFO
+)<undefined, UsersInfo, AxiosError, undefined>();
 
 export const postUserInfoAsync = createAsyncAction(
     POST_USER_INFO,
     POST_USER_INFO_SUCCESS,
-    POST_USER_INFO_ERROR
-)<undefined, GitFarmResponse ,AxiosError>();
+    POST_USER_INFO_ERROR,
+    CLEAR_POST_USER_INFO,
+)<undefined, GitFarmResponse ,AxiosError, undefined>();

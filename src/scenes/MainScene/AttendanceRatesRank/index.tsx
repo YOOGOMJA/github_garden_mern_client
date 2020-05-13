@@ -65,7 +65,7 @@ const AttendanceRatesRank = (props: AttendanceRatesRankProps) => {
         return () => {
             setChartOptions(initialOptions);
         }
-    }, [props]);
+    }, [props.attendances]);
 
     return (<div style={styles.container}>
         <Card title="정원사 참여율" desc="높은 참여율을 보이는 정원사분들입니다">

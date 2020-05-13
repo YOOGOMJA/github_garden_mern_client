@@ -12,6 +12,15 @@ const Jumbotron = (props:JumbotronInterface) => {
         <>
             {/* 현재 상황 */}
             <div className="jumbotron">
+                {/* 현재 진행중인 도전 내용 */}
+                <div className="jumbotron-item challenges">
+                    <p className="title">{props.summary?.data.current_challenge.title}🌱</p>
+                    <div className="jumbotron-item-body">
+                        <p className="desc">완료까지</p>
+                        <p className="count">{ props.summary ? props.summary.data.current_challenge.left_days : 0 }</p>
+                        <p className="desc">일</p>
+                    </div>
+                </div>
                 {/* 진행중인 정원사 일정 수 */}
                 <div className="jumbotron-item projects">
                     <p className="title">등록된 저장소💻</p>
@@ -20,7 +29,6 @@ const Jumbotron = (props:JumbotronInterface) => {
                         <p className="count">{ props.summary ? props.summary.data.repo_cnt : 0 }</p>
                         <p className="desc">건</p>
                     </div>
-
                 </div>
                 {/* 참여중인 정원사 수 */}
                 <div className="jumbotron-item participants">
