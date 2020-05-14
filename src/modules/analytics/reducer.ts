@@ -19,6 +19,10 @@ import {
     GET_FEATURED_REPOSITORY,
     GET_FEATURED_REPOSITORY_SUCCESS,
     GET_FEATURED_REPOSITORY_ERROR,
+    GET_LATEST_CHALLENGE_ATTENDANCES_BY_USER,
+    GET_LATEST_CHALLENGE_ATTENDANCES_BY_USER_SUCCESS,
+    GET_LATEST_CHALLENGE_ATTENDANCES_BY_USER_ERROR,
+    CLEAR_LATEST_CHALLENGE_ATTENDANCES_BY_USER,
 } from "./actions";
 
 const intialState:AnalyticsState = {
@@ -50,6 +54,11 @@ const intialState:AnalyticsState = {
     all_attendances_by_dates: {
         loading : false,
         error : null,
+        data : null,
+    },
+    latest_challenge_attendances_by_user:{
+        loading: false,
+        error: null,
         data : null,
     }
 }
@@ -203,7 +212,38 @@ const analytics = createReducer<AnalyticsState, AnalyticsAction>(intialState, {
             error: action.payload,
             data: null,
         }
-    })
+    }),
+    //
+    [GET_LATEST_CHALLENGE_ATTENDANCES_BY_USER]:state=>({
+        ...state,
+        latest_challenge_attendances_by_user:{
+            loading:true,
+            error:null,
+            data:null,
+        }
+    }),
+    [GET_LATEST_CHALLENGE_ATTENDANCES_BY_USER_SUCCESS]:(state,action)=>({
+        ...state, 
+        latest_challenge_attendances_by_user:{
+            loading: false,
+            error: null,
+            data: action.payload
+        }
+    }),
+    [GET_LATEST_CHALLENGE_ATTENDANCES_BY_USER_ERROR]:(state, action)=>({
+        ...state,
+        latest_challenge_attendances_by_user:{
+            loading:false,
+            error: action.payload,
+            data: null,
+        }
+    }),
+    [CLEAR_LATEST_CHALLENGE_ATTENDANCES_BY_USER]: (state)=>({
+        ...state,
+        latest_challenge_attendances_by_user:{
+            ...intialState.latest_challenge_attendances_by_user
+        }
+    }),
 });
 
 export default analytics;

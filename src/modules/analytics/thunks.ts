@@ -8,6 +8,7 @@ import {
     getFeaturedRepository,
     getPopularRepository,
     getAllAttendancesByDates,
+    getLatestChallengeAttendancesByUser
 } from "../../api/analytics";
 import {
     getSummaryAsync,
@@ -16,6 +17,7 @@ import {
     getFeaturedRepositoryAsync,
     getPopularRepositoryAsync,
     getAllAttendancesByDatesAsync,
+    getLatestChallengeAttendancesByUserAsync,
 } from "./actions";
 
 export function getSummaryThunk(): ThunkAction<
@@ -124,4 +126,26 @@ export function getFeaturedRepositoryThunk(): ThunkAction<
             dispatch(failure(e));
         }
     };
+}
+
+export function getLatestChallengeAttendancesByUserThunk(user_name:string): ThunkAction<
+void, RootState, null, AnalyticsAction>{
+    return async dispatch=>{
+        const { request, success, failure } = getLatestChallengeAttendancesByUserAsync;
+        dispatch(request());
+        try{
+            const res = await getLatestChallengeAttendancesByUser(user_name);
+            dispatch(success(res));
+        }
+        catch(e){
+            dispatch(failure(e));
+        }
+    }
+}
+
+export function clearLatestChallengeAttendancesByUserThunk():ThunkAction<void, RootState, null, AnalyticsAction>{
+    return dispatch=>{
+        const { cancel } = getLatestChallengeAttendancesByUserAsync;
+        dispatch(cancel());
+    }
 }

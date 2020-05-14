@@ -1,5 +1,5 @@
 import { createAction, createAsyncAction } from 'typesafe-actions';
-import { Summary, AllAttendances, Languages, FeaturedRepository, PopularRepository, AllAttendancesByDates } from '../../api/analytics';
+import { Summary, AllAttendances, Languages, FeaturedRepository, PopularRepository, AllAttendancesByDates, LatestChallengeAttendancesByUserReponse } from '../../api/analytics';
 import { AxiosError } from 'axios';
 
 
@@ -26,6 +26,11 @@ export const GET_POPULAR_REPOSITORY_ERROR = 'analytics/GET_POPULAR_REPOSITORY_ER
 export const GET_FEATURED_REPOSITORY = 'analytics/GET_FEATURED_REPOSITORY';
 export const GET_FEATURED_REPOSITORY_SUCCESS = 'analytics/GET_FEATURED_REPOSITORY_SUCCESS';
 export const GET_FEATURED_REPOSITORY_ERROR = 'analytics/GET_FEATURED_REPOSITORY_ERROR';
+
+export const GET_LATEST_CHALLENGE_ATTENDANCES_BY_USER = 'analytics/GET_LATEST_CHALLENGE_ATTENDANCES_BY_USER';
+export const GET_LATEST_CHALLENGE_ATTENDANCES_BY_USER_SUCCESS = 'analytics/GET_LATEST_CHALLENGE_ATTENDANCES_BY_USER_SUCCESS';
+export const GET_LATEST_CHALLENGE_ATTENDANCES_BY_USER_ERROR = 'analytics/GET_LATEST_CHALLENGE_ATTENDANCES_BY_USER_ERROR';
+export const CLEAR_LATEST_CHALLENGE_ATTENDANCES_BY_USER = 'analytics/CLEAR_LATEST_CHALLENGE_ATTENDANCES_BY_USER';
 
 export const getSummaryAsync = createAsyncAction(
     GET_SUMMARY,
@@ -62,3 +67,10 @@ export const getFeaturedRepositoryAsync = createAsyncAction(
     GET_FEATURED_REPOSITORY_SUCCESS,
     GET_FEATURED_REPOSITORY_ERROR
 )<undefined,FeaturedRepository, AxiosError>();
+
+export const getLatestChallengeAttendancesByUserAsync = createAsyncAction(
+    GET_LATEST_CHALLENGE_ATTENDANCES_BY_USER,
+    GET_LATEST_CHALLENGE_ATTENDANCES_BY_USER_SUCCESS,
+    GET_LATEST_CHALLENGE_ATTENDANCES_BY_USER_ERROR,
+    CLEAR_LATEST_CHALLENGE_ATTENDANCES_BY_USER,
+)<undefined, LatestChallengeAttendancesByUserReponse, AxiosError, undefined>();

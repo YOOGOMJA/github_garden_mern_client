@@ -5,8 +5,9 @@ import "./index.scss";
 import { useParams, useHistory } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserInfoThunk } from '../../modules/user';
-import { getAllChallengesThunk, getLatestChallengeThunk, getChallengesByUserThunk } from '../../modules/challenges';
-import repo, { getRepositoriesByUserThunk } from '../../modules/repositories';
+import { getAllChallengesThunk, getChallengesByUserThunk } from '../../modules/challenges';
+import { getLatestChallengeAttendancesByUserThunk } from '../../modules/analytics';
+import { getRepositoriesByUserThunk } from '../../modules/repositories';
 import { RootState } from '../../modules';
 
 // TODO : 사용자 정보 
@@ -19,8 +20,9 @@ const UserDetailScene = (props :any)=>{
     const history = useHistory();
 
     const { user } = useSelector((state: RootState)=> state.user);
-    const { all_challenges, latest_challenge } = useSelector((state:RootState)=>state.challenge);
+    const { all_challenges } = useSelector((state:RootState)=>state.challenge);
     const { repos_by_user } = useSelector((state:RootState)=>state.repository);
+    const { latest_challenge_attendances_by_user } = useSelector((state:RootState)=>state.analytics);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -28,7 +30,12 @@ const UserDetailScene = (props :any)=>{
         dispatch(getAllChallengesThunk());
         dispatch(getChallengesByUserThunk(user_name || ""));
         dispatch(getRepositoriesByUserThunk(user_name || ""));
+        dispatch(getLatestChallengeAttendancesByUserThunk(user_name || ""));
     }, [dispatch, user_name]);
+
+    useEffect(()=>{
+        console.log(latest_challenge_attendances_by_user);
+    },[latest_challenge_attendances_by_user]);
 
     useEffect(()=>{
         if(user.error){
@@ -47,10 +54,6 @@ const UserDetailScene = (props :any)=>{
             if(user.data.code !== 1){
                 alert("오류가 발생했습니다");
                 history.push("/");
-            }
-            else{
-                // 데이터 가져오기 성공
-                console.log(user.data.data);
             }
         }
     }, [history, user.data, user.loading]);
@@ -71,6 +74,17 @@ const UserDetailScene = (props :any)=>{
         </div>
         <div>
             {repos_by_user.data?.data.map(repo=>{ return <p>{ repo.name }</p> })}
+        </div>
+        <div>
+            {
+                (()=>{
+                    if(latest_challenge_attendances_by_user.data){
+                        if(latest_challenge_attendances_by_user.data.data){
+                            return <p>참석률 : {latest_challenge_attendances_by_user.data.data[0].attendances_rate}</p>
+                        }
+                    }
+                })()
+            }
         </div>
     </div>);
 }

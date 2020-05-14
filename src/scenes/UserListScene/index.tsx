@@ -35,7 +35,6 @@ const UserListScene = () => {
         user: () => {
             if (users.data && users.data.data) {
                 return users.data.data.map(user => {
-                    console.log('render', user);
                     return (
                         <div className="user-container">
                             <div className="avatar-wrapper">

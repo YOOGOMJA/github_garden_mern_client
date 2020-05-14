@@ -19,9 +19,18 @@ export async function getAllAttendances() {
     return res.data;
 }
 
-export async function getAllAttendancesByDates(){
+export async function getAllAttendancesByDates() {
     const res = await axios.get<AllAttendancesByDates>(
         `${REACT_API_HOST}/api/analysis/attendances/date`
+    );
+    return res.data;
+}
+
+export async function getLatestChallengeAttendancesByUser(
+    user_name: string
+) {
+    const res = await axios.get<LatestChallengeAttendancesByUserReponse>(
+        `${REACT_API_HOST}/api/analysis/attendances/latest/users/${user_name}`
     );
     return res.data;
 }
@@ -47,7 +56,6 @@ export async function getFeaturedRepository() {
     return res.data;
 }
 
-
 interface SummaryInterface {
     // 현재 저장된 저장소 수
     repo_cnt: Number;
@@ -58,9 +66,9 @@ interface SummaryInterface {
     // 현재까지 진행된 일자
     challenge_duration: number;
     // 현재 도전의 남은 도전일자
-    current_challenge:{
-        title : string,
-        left_days: number,
+    current_challenge: {
+        title: string;
+        left_days: number;
     };
 }
 
@@ -89,15 +97,19 @@ export interface AllAttendances extends GitFarmResponseInterface {
     data: [AllAttendancesInterface];
 }
 
-export interface AllAttendancesByDates extends GitFarmResponseInterface{
-    data : [
+export interface LatestChallengeAttendancesByUserReponse extends GitFarmResponseInterface{
+    data : [AllAttendancesInterface];
+}
+
+export interface AllAttendancesByDates extends GitFarmResponseInterface {
+    data: [
         {
-            date : string,
-            cnt : number,
-            all : number,
-            rate : number,
+            date: string;
+            cnt: number;
+            all: number;
+            rate: number;
         }
-    ]    
+    ];
 }
 
 export interface Languages extends GitFarmResponseInterface {
