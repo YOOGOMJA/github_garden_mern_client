@@ -1,0 +1,149 @@
+.user-list{
+    .content-container{
+        width: 100%;
+        height: 100%;
+        background-color: rgb(54, 61, 79);
+        box-shadow: rgba(12, 12, 13, 0.74) 2px 2px;
+        border-radius: 10px;
+        display:flex;
+        flex-direction: column;
+
+        $margin-space: 20px;
+        
+        .header-wrapper{
+            width: 100%;
+            .header-title{
+                margin: $margin-space $margin-space;
+                color:#fff;
+                margin-bottom: $margin-space;
+            }
+            .header-content{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+                .search-wrapper{
+                    width: 90%;
+                    display: flex;
+                    flex-direction: row;
+                    margin-top:15px;
+                    margin-bottom: 10px;
+                    .search-input{
+                        flex:8;
+                        width: 100%;
+                        background-color: rgba(0,0,0,0);
+                        border: none;
+                        font-size: 1.3em;
+                        border-bottom: 1px solid #fff;
+                        color: #fff;
+                        padding:0 10px;
+                        font-weight: 100;
+                    }
+                    .search-btn{
+                        flex:2;
+                        width: 100%;
+                        background-color: rgba(0,0,0,0);
+                        border: none;
+                        color: #fff;
+                        font-size: 1.3em;
+                    }
+                }
+            }
+        }
+        .content-wrapper{
+            width: 100%;
+            
+            margin-top: $margin-space/2;
+            margin-bottom : $margin-space;
+
+            height: 100%;
+            overflow-y :auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            .user-container{
+                width: 90%;
+                height: 200px;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                padding: 10px 0;
+                border-bottom: 1px solid #5c6680;
+
+                .avatar-wrapper{
+                    border-radius: 50%;
+                    overflow: hidden;
+                    width: fit-content;
+                    height: fit-content;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    .avatar{
+                        width: 80px;
+                        height: 80px;
+                    }
+                }
+                
+                .desc{
+                    display: flex;
+                    flex-direction: column;
+                    flex:5;
+                    margin : 0 $margin-space;
+                    p{ margin:0; padding:0; color:#fff; }
+
+                    .login{
+                        font-size: 1.4em;
+                        font-weight: 100;
+                    }
+                    .user-name{
+                        font-size: .8em;
+                    }
+                }
+                
+                .detail-btn{
+                    flex:2;
+                    background-color: #28ae60;
+                    text-align: center;
+                    text-decoration: none;
+                    padding: 5px 0;
+                    margin-right: 10px;
+                    border-radius: 5px;
+                    color: #fff;
+                    box-shadow: rgba(12, 12, 13, 0.74) 2px 2px;
+                }
+            }
+        }
+    }
+}
+
+.user-list-content{
+    .content-container{
+        $margin-space: 20px;
+
+        width: 100%;
+        height: 100%;
+        display:flex;
+        flex-direction: column;
+        padding-left: $margin-space;
+        justify-items: center;
+        .message-container{
+            margin:auto;
+            .title{
+                font-size: 4em;
+                color: #fff;
+                margin: 0;
+                font-weight: 100;
+                b{
+                    color:#28ae60;
+                }
+            }
+            .desc{
+                font-size: 1.5em;
+                color: #fff;
+                margin: 0;
+                font-weight: 100;
+            }
+        }
+    }
+}

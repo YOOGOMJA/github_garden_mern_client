@@ -1,0 +1,18 @@
+// essential
+
+.users-contents-container {
+    height:-webkit-fill-available;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    .user-list{
+        padding-left: 90px;
+        padding-top: 10px;
+        padding-bottom : 10px;
+        min-width: 400px;
+    }
+    .user-list-content{
+        width: 100%;
+    }
+}

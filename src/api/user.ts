@@ -1,9 +1,10 @@
 import axios from "axios";
 import GitFarmResponseInterface from "./interfaces/GitFarmResponse";
 import UserInfoInterface from './interfaces/UserInfo';
+import { RepositoryWithUser } from "./interfaces/Repository";
+import ChallengeInterface from "./interfaces/Challenge";
 // const REACT_API_HOST = process.env.REACT_API_HOST || 'localhost:4000';
 const REACT_API_HOST = 'http://localhost:4000';
-// console.log(REACT_API_HOST);
 
 export async function getUserInfo(user_name: string) {
     const response = await axios.get<UserInfo>(

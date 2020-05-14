@@ -18,6 +18,9 @@ import { Provider } from 'react-redux';
 import Thunk from 'redux-thunk';
 import rootReducer from './modules';
 
+import './styles/userList.scss';
+import UserListContent from './scenes/UserListScene/UserListContent';
+
 const store = createStore(rootReducer, applyMiddleware(Thunk));
 
 ReactDOM.render(
@@ -30,14 +33,21 @@ ReactDOM.render(
             <Route exact path="/" component={MainScene} />
             <Route path="/register" component={RegisterUserScene} />
             <Route path="/users">
-              <Switch>
-                {/* 목록 페이지 */}
-                <Route exact path="/users/" component={UserListScene} />
-                {/* 유저 404 페이지 */}
-                <Route exact path="/users/404-not-found" component={UserNotFoundScene} />
-                {/* 유저별 상세 페이지  */}
-                <Route path="/users/:user_name" component={UserDetailScene} />
-              </Switch>
+              <div className="users-contents-container">
+                <div className="user-list">
+                  {/* 목록 페이지 */}
+                  <Route path="/users" component={UserListScene} />
+                </div>
+                <div className="user-list-content">
+                  <Switch>
+                    <Route exact path="/users/" component={UserListContent} />
+                    {/* 유저 404 페이지 */}
+                    {/* <Route path="/users/" component={UserNotFoundScene} /> */}
+                    {/* 유저별 상세 페이지  */}
+                    <Route path="/users/:user_name" component={UserDetailScene} />
+                  </Switch>
+                </div>
+              </div>
             </Route>
             <Route path="*" component={NotFoundScene} />
           </Switch>
