@@ -2,6 +2,7 @@ import React, { CSSProperties } from 'react';
 import { Card } from '../../../components';
 import { UsersInfo } from '../../../api/user';
 import UserInfoInterface from '../../../api/interfaces/UserInfo';
+import { Link } from 'react-router-dom';
 
 interface AttendentListProps {
     users: UsersInfo | null,
@@ -16,7 +17,6 @@ const index = (props: AttendentListProps) => {
         else{
             return `https://avatars1.githubusercontent.com/u/${user.id}?s=${avatar_size * 2}`;
         }
-        
     }
     return (
         <Card title="참여중인 정원사들" desc="현재 정원사 프로젝트에 참여중인 정원사분들입니다">
@@ -37,7 +37,8 @@ const index = (props: AttendentListProps) => {
                                         <p style={styles.displayName}>{user.login}</p>
                                     </div>
                                     <div style={styles.linkWrapper}>
-                                        <a style={styles.link} target="_blank" rel="noopener noreferrer" href={user.html_url.toString()}>보기</a>
+                                        {/* <a style={styles.link} target="_blank" rel="noopener noreferrer" href={user.html_url.toString()}>보기</a> */}
+                                        <Link style={ styles.link } to={ `/users/${user.login}` }>보기</Link>
                                     </div>
                                 </div>)
                             });

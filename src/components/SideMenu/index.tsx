@@ -40,7 +40,9 @@ const index = () => {
                     <a href="https://github.com/yoogomja/git-farm-mern"><FaGithub /></a>
                 </li>
                 <li>
-                    <a href="#setting" ><MdSettings /></a>
+                    <NavLink activeClassName="active" to="/settings">
+                        <MdSettings />
+                    </NavLink>
                 </li>
             </ul>
         </div>

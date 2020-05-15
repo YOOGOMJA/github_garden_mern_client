@@ -1,0 +1,97 @@
+.user-list-content {
+    $margin-space: 20px;
+    $color-green: #28ae60;
+    $border-color:#5c6580;
+    // height: 100%;
+    .user-content-container {
+        display: flex;
+        flex-direction: row;
+        padding: 0 $margin-space;
+        height:100%;
+        .header-container {
+            width: 300px;
+            margin: $margin-space 0;
+            padding-right: $margin-space;
+            border-right : 1px solid $border-color;
+            .header-content {
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: flex-start;
+
+                $avatar-size: 280px;
+
+                .avatar-container {
+                    display: flex;
+                    .avatar {
+                        width: $avatar-size;
+                        height: $avatar-size;
+                    }
+                }
+                
+                .header-desc{
+                    margin-top: $margin-space /2;
+                    
+                    color: #fff;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: flex-start;
+                    padding-left:$margin-space /2;
+                    padding-right : $margin-space/2;
+                    width: $avatar-size - $margin-space;
+                    p{ margin:0; padding:0; }
+                    .user-name{
+                        
+                        .title{ 
+                            margin:0; padding:0;
+                            font-size: 1.3em; 
+                            font-weight: 400;
+                            color: #fff;
+                            text-decoration: none;
+                            &:hover{
+                                text-decoration: underline;
+                            }
+                        }
+                        .subtitle{
+                            font-size: 1em; 
+                            font-weight: 100;
+                        }
+                        border-bottom:1px solid $border-color;
+                        padding-bottom: 1em;
+                    }
+                    .bio{
+                        margin-top: 1em;
+                        font-size: .9em;
+                        font-weight:100;
+                    }
+                    .link-wrapper{
+                        margin-top:.3em;
+                        font-size:1em;
+                        color:#fff;
+                        display:flex;
+                        align-items: center;
+                        .icon{ display:flex; }
+                        .link{
+                            margin-left:.5em;
+                            display: flex;
+                            font-size:.9em;
+                            text-decoration: none;
+                            font-weight: 400;
+                            color: #fff;
+                            word-break: break-all;
+                        }
+                    }
+                }
+            }
+        }
+
+        .content-container{
+            display: flex;
+            max-height: 100%;
+            overflow-y: auto;
+            .content-wrapper{
+                padding: 10px 0;
+            }
+        }
+    }
+}
