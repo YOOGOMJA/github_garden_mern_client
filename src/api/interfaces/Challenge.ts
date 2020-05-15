@@ -9,3 +9,8 @@ export default interface ChallengeInterface{
     participants: [UserInfo]
 };
 
+export interface ChallengeUpdateInterface {
+    start_dt?: string,
+    finish_dt?: string,
+    title?: string,
+}

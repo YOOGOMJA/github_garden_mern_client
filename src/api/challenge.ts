@@ -1,6 +1,6 @@
 import axios from 'axios';
 import GitFarmResponseInterface from './interfaces/GitFarmResponse';
-import ChallengeInterface from './interfaces/Challenge';
+import ChallengeInterface, { ChallengeUpdateInterface } from './interfaces/Challenge';
 
 const REACT_API_HOST = 'http://localhost:4000';
 
@@ -33,6 +33,14 @@ export async function getLatestChallenge(){
 export async function postUserToChallenge(user_name:string, challenge_id:string){
     const res = await axios.post<GitFarmResponseInterface>(
         `${REACT_API_HOST}/api/challenges/${challenge_id}/users/${user_name}`
+    );
+    return res.data;
+}
+
+export async function putChallenge(challenge_id: string, options:ChallengeUpdateInterface){
+    const res = await axios.put<GitFarmResponseInterface>(
+        `${REACT_API_HOST}/api/challenges/${challenge_id}`,
+        options
     );
     return res.data;
 }
