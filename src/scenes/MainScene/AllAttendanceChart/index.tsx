@@ -15,7 +15,6 @@ const AllAttendanceChart = (props: AllAttendanceChartProps) => {
 
     useEffect(() => {
         if(props.attendances){
-            // console.log(props.attendances.data);
             let newDates: moment.Moment[] = [];
             Object.keys(props.attendances.data[0].attendances).forEach(key=>{
                 newDates.push(moment(key));

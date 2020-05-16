@@ -50,14 +50,7 @@ const AttendanceByDay = (props:AttendanceByDayProps)=>{
             });
             let _options = { ...initialOptions };
             _options.series[0].data = data;
-            // console.log('prev options ' , options);
-            // console.log('new options ' , _options);
-            setOptions(_options);
-            console.log('option changed');
-            
-        }
-        else{
-            console.log('is empty');
+            setOptions(_options);   
         }
     },[props.attendances]);
 

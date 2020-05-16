@@ -22,7 +22,7 @@ const RegistUser = (props: RegisterUserProps) => {
 
     useEffect(() => {
         if (post_user.error) {
-            console.log(post_user.error);
+            
             setErrorMesg("오류가 발생했습니다. 잠시 후 다시 시도해주세요");
         }
         else {
@@ -50,7 +50,7 @@ const RegistUser = (props: RegisterUserProps) => {
                     setUserName("");
                     setInputMode(INPUT_MODE_RESULT);
                     // 정상인 경우
-                    console.log(post_user.data);
+                    
                 }
             }
         }
@@ -62,7 +62,6 @@ const RegistUser = (props: RegisterUserProps) => {
 
     useEffect(()=>{
         return function () {
-            console.log("unmounted");
             setInsertedUserName("");
             setErrorMesg("");
             setUserName("");
@@ -71,10 +70,7 @@ const RegistUser = (props: RegisterUserProps) => {
         }
     },[]);
 
-    useEffect(()=>{
-        console.log(`error Message : ${errorMesg}`);
-    },[errorMesg]);
-
+    
     const fn = {
         submit: () => {
             dispatch(postUserInfoThunk(userName.trim()));

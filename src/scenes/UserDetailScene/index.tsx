@@ -10,6 +10,9 @@ import { getLatestChallengeAttendancesByUserThunk } from '../../modules/analytic
 import { getRepositoriesByUserThunk } from '../../modules/repositories';
 import { RootState } from '../../modules';
 
+import { GoPulse, GoVerified } from 'react-icons/go';
+import {IoIosCloseCircle } from 'react-icons/io';
+
 import UserDetailHeader from './UserDetailHeader';
 
 
@@ -37,10 +40,6 @@ const UserDetailScene = (props: any) => {
     }, [dispatch, user_name]);
 
     useEffect(() => {
-        console.log(latest_challenge_attendances_by_user);
-    }, [latest_challenge_attendances_by_user]);
-
-    useEffect(() => {
         if (user.error) {
             if (user.error.message.indexOf("404") >= 0) {
                 history.push("./404-not-found");
@@ -64,7 +63,7 @@ const UserDetailScene = (props: any) => {
     return (<div className="user-content-container">
         <UserDetailHeader user={user.data?.data} />
         <div className="content-container">
-            <div className="content-wrapper">
+            {/* <div className="content-wrapper">
 
             <p>{user.data?.data.login}</p>
             <p>{user.data?.data.name}</p>
@@ -92,8 +91,50 @@ const UserDetailScene = (props: any) => {
                     })()
                 }
             </div>
-            </div>
+            </div> */}
+            <div className="content-wrapper">
+                <div className="header">
+                    <h2>
+                        참여한 도전 기간
+                    </h2>
+                </div>
+                <div className="wrapper">
+                    <div className="card-list">
+                        <div className="challenge-card-container active">
+                            <p className="title">도전 기간 제목</p>
+                            <p className="date">2020-03-01 - 2020-05-01</p>
+                            <p className="info"><GoPulse/>진행중</p>
+                            <button className="card-delete" type="button">
+                                <IoIosCloseCircle/>
+                            </button>
+                        </div>
 
+                        <div className="challenge-card-container finished">
+                            <p className="title">도전 기간 제목</p>
+                            <p className="date">2020-03-01 - 2020-05-01</p>
+                            <p className="info"><GoVerified/>종료됨</p>
+                        </div>
+
+                        <div className="challenge-card-container finished">
+                            <p className="title">도전 기간 제목</p>
+                            <p className="date">2020-03-01 - 2020-05-01</p>
+                            <p className="info"><GoVerified/>종료됨</p>
+                        </div>
+
+                        <div className="challenge-card-container finished">
+                            <p className="title">도전 기간 제목</p>
+                            <p className="date">2020-03-01 - 2020-05-01</p>
+                            <p className="info"><GoVerified/>종료됨</p>
+                        </div>
+
+                        <div className="challenge-card-container finished">
+                            <p className="title">도전 기간 제목</p>
+                            <p className="date">2020-03-01 - 2020-05-01</p>
+                            <p className="info"><GoVerified/>종료됨</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
     </div>);

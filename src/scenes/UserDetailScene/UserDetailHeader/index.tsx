@@ -10,8 +10,6 @@ interface UserDetailHeaderProps {
     user : UserInfoInterface | undefined | null
 }
 const UserDetailHeader = (props: UserDetailHeaderProps)=>{
-    console.log(props.user?.email);
-
     const ui = {
         user_name : (user: UserInfoInterface | undefined | null)=>{
             if(user){
@@ -40,8 +38,8 @@ const UserDetailHeader = (props: UserDetailHeaderProps)=>{
         bio: (bio:string|String| undefined)=>{
             if(bio){ 
                 return (<div className="bio">
-                    { bio.split('\n').map( text=>{
-                        return (<span>{ text }<br/></span>)
+                    { bio.split('\n').map( (text, idx)=>{
+                        return (<span key={ idx }>{ text }<br/></span>)
                     }) }
                 </div>)
             }

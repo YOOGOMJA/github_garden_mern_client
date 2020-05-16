@@ -10,7 +10,7 @@ export default interface ChallengeInterface{
 };
 
 export interface ChallengeUpdateInterface {
-    start_dt?: string,
-    finish_dt?: string,
+    start_dt?: Date,
+    finish_dt?: Date,
     title?: string,
 }

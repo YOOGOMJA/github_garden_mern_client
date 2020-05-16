@@ -36,7 +36,7 @@ const UserListScene = () => {
             if (users.data && users.data.data) {
                 return users.data.data.map(user => {
                     return (
-                        <div className="user-container">
+                        <div key={ user.id.toString() } className="user-container">
                             <div className="avatar-wrapper">
                                 <img className="avatar" src={ getUserAvatarUrl(user).toString() } alt="사용자 깃허브 프로필 이미지" />
                             </div>

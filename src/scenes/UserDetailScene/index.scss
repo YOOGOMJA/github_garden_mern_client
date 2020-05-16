@@ -2,6 +2,36 @@
     $margin-space: 20px;
     $color-green: #28ae60;
     $border-color: #5c6580;
+
+    @-webkit-keyframes rotating /* Safari and Chrome */ {
+        from {
+            -webkit-transform: rotate(0deg);
+            -o-transform: rotate(0deg);
+            transform: rotate(0deg);
+        }
+        to {
+            -webkit-transform: rotate(360deg);
+            -o-transform: rotate(360deg);
+            transform: rotate(360deg);
+        }
+    }
+    @keyframes rotating {
+        from {
+            -ms-transform: rotate(0deg);
+            -moz-transform: rotate(0deg);
+            -webkit-transform: rotate(0deg);
+            -o-transform: rotate(0deg);
+            transform: rotate(0deg);
+        }
+        to {
+            -ms-transform: rotate(360deg);
+            -moz-transform: rotate(360deg);
+            -webkit-transform: rotate(360deg);
+            -o-transform: rotate(360deg);
+            transform: rotate(360deg);
+        }
+    }
+
     // height: 100%;
     .user-content-container {
         display: flex;
@@ -116,35 +146,7 @@
                         margin-left: 0.3em;
                     }
 
-                    @-webkit-keyframes rotating /* Safari and Chrome */ {
-                        from {
-                            -webkit-transform: rotate(0deg);
-                            -o-transform: rotate(0deg);
-                            transform: rotate(0deg);
-                        }
-                        to {
-                            -webkit-transform: rotate(360deg);
-                            -o-transform: rotate(360deg);
-                            transform: rotate(360deg);
-                        }
-                    }
-                    @keyframes rotating {
-                        from {
-                            -ms-transform: rotate(0deg);
-                            -moz-transform: rotate(0deg);
-                            -webkit-transform: rotate(0deg);
-                            -o-transform: rotate(0deg);
-                            transform: rotate(0deg);
-                        }
-                        to {
-                            -ms-transform: rotate(360deg);
-                            -moz-transform: rotate(360deg);
-                            -webkit-transform: rotate(360deg);
-                            -o-transform: rotate(360deg);
-                            transform: rotate(360deg);
-                        }
-                    }
-
+                    
                     .indicator{
                         -webkit-animation: rotating 2s linear infinite;
                         -moz-animation: rotating 2s linear infinite;
@@ -170,6 +172,73 @@
             overflow-y: auto;
             .content-wrapper {
                 padding: 10px 0;
+                
+                .header{
+                    h2{ margin: 0; margin-top:1em; color:#fff; }
+                }
+                .wrapper{
+                    display: flex;
+                    max-width: 800px;
+                    overflow-x: auto;
+
+                    .card-list{
+                        width: max-content;
+                        display: flex;
+                        flex-direction: row;
+                        .challenge-card-container{
+                            position: relative;
+                            margin : 1em 0;
+                            padding: .6em 1em;
+                            min-width:250px;    
+                            background-color: #fff;                        
+                            margin-right: 1em;
+                            border-radius: .3em;
+                            box-shadow: rgba(12, 12, 13, 0.74) 2px 2px 3px 0px;
+                            background-color:rgb(54, 61, 79);
+                            p{ margin:0;padding:0; color: #fff; }
+
+                            .title{
+                                font-size: 1.3em;
+                                font-weight: 800;
+                            }
+                            .date{
+                                font-size: .8em;
+                                font-weight: 100;
+                            }
+                            .info{
+                                display: flex;
+                                // justify-content: center;
+                                align-items: center;
+                                svg { display: flex; margin-right: .5em; }
+                                margin-top: .3em;
+                                font-size: .5em;
+                                font-size: .9em;
+                            }
+
+                            &.active {
+                                background-color: #3f51b5;
+                                .info svg{ color:#ffeb3b; }
+                            }
+                            &.finished .info svg{ color :#4caf50; }
+
+                            .card-delete{
+                                cursor: pointer;
+                                border: 0;
+                                background:none;
+                                color: #ffffff85;
+                                font-size: 1.2em;
+                                position: absolute;
+                                top :.5em;
+                                right: .2em;
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                svg { display: flex; }
+                            }
+                        }
+                    }
+                }
+                
             }
         }
     }

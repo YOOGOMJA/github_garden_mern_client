@@ -45,6 +45,21 @@ export async function putChallenge(challenge_id: string, options:ChallengeUpdate
     return res.data;
 }
 
+export async function deleteChallenge(challenge_id: string){
+    const res = await axios.delete<GitFarmResponseInterface>(
+        `${REACT_API_HOST}/api/challenges/${challenge_id}`
+    );
+    return res.data;
+}
+
+export async function postChallenge(options:ChallengeUpdateInterface){
+    const res = await axios.post<GitFarmResponseInterface>(
+        `${REACT_API_HOST}/api/challenges/`,
+        options
+    );
+    return res.data;
+}
+
 export interface AllChallengesResponse extends GitFarmResponseInterface{
     data : [ChallengeInterface]
 }

@@ -1,0 +1,136 @@
+.contents.settings{
+    p{ margin:0; padding:0; }
+    h1{ margin:0; padding:0; }
+    color : #fff;
+
+    .header-container{
+        h1{ 
+            margin-bottom: .5em; 
+            font-size: 2.5em;
+        }
+    }
+    .content-container{
+        width: 100%;
+        overflow-x:auto;
+
+        .challenge-list{
+            width: max-content;
+            display: flex;
+            flex-direction: row;
+            margin-top: 2em;
+            margin-bottom:2em;
+            .challenge-container{
+                min-width: 200px;
+                cursor: pointer;
+                display: flex;
+                flex-direction: column;
+                background-color:rgb(54, 61, 79);
+                padding: 1em 1.5em;
+                margin-right: 1em;
+                box-shadow: rgba(12, 12, 13, 0.74) 2px 2px 3px 0px;
+                border-radius: .5em;
+                .title{
+                    font-size:1.3em;
+                    font-weight: 800;
+                }
+                .date{
+                    font-size:.8em;
+                    font-weight: 100;
+                }
+                .desc{
+                    margin-top:.5em;
+                    font-size:.9em;
+                }
+
+                &.active{
+                    background-color: #3f51b5;
+                }
+
+                &.insert{
+                    display: flex;
+                    color: #fbfbfb;
+                    font-size: 4em;
+                    width: min-content;
+                    min-width: 120px;
+                    padding: 0;
+                    justify-content: center;
+                    box-shadow: none;
+                    align-items: center;
+                    background: none;
+                }
+            }
+        }
+    }
+    .challenge-info-container{
+        width:100%;
+        height: 100%;
+        .detail-container{
+            display: flex;
+            flex-direction: column;
+            width: 750px;
+            .input{
+                width: 100%;
+                background:none;
+                color: #fff;
+                font-size: 1.8em;
+                margin: .3em 0;
+                font-weight: 100;
+                border: 0;
+                border-bottom:  1px solid #fff;
+            }
+
+            .info{
+                display: flex;
+                flex-direction: column;
+                font-size:.9em;
+                font-weight: 100;
+                .name{ display:flex; color:#fff; }
+                .error{ display:flex; color: #f44336; }
+            }
+
+            .title-container{
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+            }
+            .dates-container{
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                margin-top: 1em;
+                .date-container{
+                    width: 350px;
+                    .react-datepicker-wrapper{ display: flex; }
+                }
+            }
+        }
+
+        .btns-container{
+            margin-top: 2em;
+            margin-bottom:1em;
+            display: flex;
+            flex-direction: row;
+            .btn{
+                background-color: gray;
+                font-size: 1.3em;
+                border: 0;
+                padding: .3em 1em;
+                margin-right: .5em;
+                border-radius: .3em;
+                box-shadow: rgba(12, 12, 13, 0.74) 2px 2px 3px 0px;
+                color:#fff;
+                &.edit, &.add{
+                    background-color: #3f51b5;
+                }
+                &.delete{
+                    background-color: #f44336;
+                }
+            }
+        }
+
+        .info{
+            .title{ font-size:2.5em;  }
+            .desc{ font-size:1em; font-weight: 100; }
+        }
+    }
+}
