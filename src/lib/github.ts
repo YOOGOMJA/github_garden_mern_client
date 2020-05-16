@@ -3,6 +3,10 @@ import UserInfoInterface from '../api/interfaces/UserInfo';
 export const config = {
     avatar : {
         size : 150,
+    },
+    url : {
+        LINK : "LINK",
+        EMAIL : "EMAIL",
     }
 }
 export const getAvatarURL = (user:UserInfoInterface | null | undefined, size?: number | null | undefined): string | undefined=> {
@@ -18,4 +22,25 @@ export const getAvatarURL = (user:UserInfoInterface | null | undefined, size?: n
     else{
         return undefined;
     }
+}
+
+export const getURL = (url : string, type?:string)=>{
+    type = type || config.url.LINK;
+    let result = "";
+    switch(type){
+        case config.url.LINK:
+            if(url.toLowerCase().indexOf("://") < 0){
+                // 프로토콜 형태가 존재하지 않는 경우
+                result = "http://" + url;
+            }
+            else{ result = url; }
+            break;
+        case config.url.EMAIL:
+            result = "mailto://" + url
+            break;
+        default: 
+            result = url;
+            break;
+    }
+    return result;
 }

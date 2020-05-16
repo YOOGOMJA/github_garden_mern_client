@@ -6,6 +6,8 @@ import Logo from "../Logo";
 import './SideMenu.scss';
 import { NavLink } from 'react-router-dom';
 
+import project_info from '../../../package.json';
+
 const index = () => {
     return (
         <div className="sidemenu">
@@ -37,7 +39,7 @@ const index = () => {
                     <a href="#info"><MdInfo/></a>
                 </li>
                 <li>
-                    <a href="https://github.com/yoogomja/git-farm-mern"><FaGithub /></a>
+                    <a href={ project_info.repository.url } target="_blank" rel="noopener noreferrer"><FaGithub /></a>
                 </li>
                 <li>
                     <NavLink activeClassName="active" to="/settings">

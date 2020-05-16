@@ -9,10 +9,9 @@ import { getAllChallengesThunk, getChallengesByUserThunk } from '../../modules/c
 import { getLatestChallengeAttendancesByUserThunk } from '../../modules/analytics';
 import { getRepositoriesByUserThunk } from '../../modules/repositories';
 import { RootState } from '../../modules';
-import UserInfoInterface from '../../api/interfaces/UserInfo';
+
 import UserDetailHeader from './UserDetailHeader';
 
-import { getAvatarURL } from '../../lib/github';
 
 // TODO : 사용자 정보 
 // TODO : 사용자가 가지고 있는 repo

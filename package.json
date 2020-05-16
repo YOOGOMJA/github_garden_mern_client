@@ -1,5 +1,10 @@
 {
-  "name": "client",
+  "name": "github-garden-mern-client",
+  "description": "MERN Stack 정원사 프로젝트 클라이언트부",
+  "repository":{
+    "type" : "git",
+    "url": "https://github.com/YOOGOMJA/github_garden_mern_client"
+  },
   "version": "0.1.0",
   "private": true,
   "dependencies": {

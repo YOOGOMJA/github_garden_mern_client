@@ -4,6 +4,8 @@ import UserInfoInterface from '../../../api/interfaces/UserInfo';
 
 import { IoIosLink, IoIosMail } from 'react-icons/io';
 
+import Footer from './Footer';
+
 interface UserDetailHeaderProps {
     user : UserInfoInterface | undefined | null
 }
@@ -24,7 +26,9 @@ const UserDetailHeader = (props: UserDetailHeaderProps)=>{
                 else{
                     return (
                         <div className="user-name">
-                            <a className="title" target="_blank" href={ `https://github.com/${user.login}` }>{ user.login }</a>
+                            <p className="title">
+                                <a className="title" target="_blank" href={ `https://github.com/${user.login}` }>{ user.login }</a>
+                            </p>
                         </div>
                     );
                 }
@@ -45,20 +49,22 @@ const UserDetailHeader = (props: UserDetailHeaderProps)=>{
         },
         link: (data:string | String | undefined)=>{
             if(data){
+                const _real_url = libGithub.getURL(data.toString(), libGithub.config.url.LINK);
                 return <div className="link-wrapper">
                     <p className="icon">
                         <IoIosLink/>
                     </p>
-                    <a className="link" href={props.user?.blog + ""} target="_blank">{props.user?.blog}</a>
+                    <a className="link" href={ _real_url } target="_blank" rel="noopener noreferrer">{ data }</a>
                 </div>
             }
             else{ return <></>; }
         },
         mail: (data:string| String|undefined)=>{
             if(data){
+                const _real_url = libGithub.getURL(data.toString(), libGithub.config.url.EMAIL);
                 return <div className="link-wrapper">
                     <p className="icon"><IoIosMail/></p>
-                    <a className="link" href={"mailto://" + props.user?.blog + ""} target="_blank">{props.user?.blog}</a>
+                    <a className="link" href={ _real_url } target="_blank" rel="noopener noreferrer">{ data }</a>
                 </div>
             }
             else{ return <></>; }
@@ -79,6 +85,7 @@ const UserDetailHeader = (props: UserDetailHeaderProps)=>{
                     { ui.mail(props.user?.email) }
                 </div>
             </div>
+            <Footer/>
         </div>
     );
 }
