@@ -6,6 +6,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../../modules';
 import { postUserInfoThunk, clearPostUserInfoThunk } from '../../../modules/user/thunks';
 
+import Indicator from '../../../components/Indicator';
+
 interface RegisterUserProps {
     style?: { [name: string]: CSSProperties },
 }
@@ -18,11 +20,11 @@ const RegistUser = (props: RegisterUserProps) => {
     const [inputMode, setInputMode] = useState(INPUT_MODE_FORM);
     const [userName, setUserName] = useState("");
     const [insertedUserName, setInsertedUserName]= useState("");
+    const [isRequested, setIsRequested] = useState(false);
     const dispatch = useDispatch();
 
     useEffect(() => {
         if (post_user.error) {
-            
             setErrorMesg("오류가 발생했습니다. 잠시 후 다시 시도해주세요");
         }
         else {
@@ -50,7 +52,6 @@ const RegistUser = (props: RegisterUserProps) => {
                     setUserName("");
                     setInputMode(INPUT_MODE_RESULT);
                     // 정상인 경우
-                    
                 }
             }
         }
@@ -59,7 +60,9 @@ const RegistUser = (props: RegisterUserProps) => {
             setUserName("");
         }
     }, [post_user.error, post_user.data]);
-
+    useEffect(()=>{
+        setIsRequested(post_user.loading);
+    },[post_user.loading]);
     useEffect(()=>{
         return function () {
             setInsertedUserName("");
@@ -73,6 +76,7 @@ const RegistUser = (props: RegisterUserProps) => {
     
     const fn = {
         submit: () => {
+            if(isRequested){ alert("이미 요청 중 입니다. 잠시만 기다려주세요."); return;}
             dispatch(postUserInfoThunk(userName.trim()));
         }
     }
@@ -82,8 +86,12 @@ const RegistUser = (props: RegisterUserProps) => {
         getForm: () => {
             if (inputMode === INPUT_MODE_FORM) {
                 return <div style={styles.wrapper}>
-                    <input type="text" placeholder="github 유저 계정을 입력해주세요" style={styles.input} value={ userName } onChange={ e=>setUserName(e.target.value) } onKeyPress={ e=>{if(e.which === 13 || e.keyCode === 13){ setUserName(e.currentTarget.value); fn.submit(); }} }/>
-                    <button type="button" style={styles.btn} onClick={fn.submit}>등록</button>
+                    <input type="text" placeholder="github 유저 계정을 입력해주세요" style={styles.input} value={ userName } onChange={ e=>setUserName(e.target.value) } onKeyPress={ e=>{if(e.which === 13 || e.keyCode === 13){ /*setUserName(e.currentTarget.value); fn.submit();*/ }} }/>
+                    <button type="button" style={styles.btn} onClick={fn.submit}>
+                        {
+                            isRequested ? <Indicator/> : "등록"
+                        }
+                    </button>
                 </div>;
             }
             else {

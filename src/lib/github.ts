@@ -44,3 +44,12 @@ export const getURL = (url : string, type?:string)=>{
     }
     return result;
 }
+
+export const getUserName = (login : string | String, name: string | String | undefined)=>{
+    if(name && name.trim() !== ""){
+        return name;
+    }
+    else{
+        return login;
+    }
+}

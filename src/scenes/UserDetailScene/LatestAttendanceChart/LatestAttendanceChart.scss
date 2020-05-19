@@ -1,0 +1,23 @@
+.attendance-chart-container{
+    display: flex;
+    min-height: 400px;
+    width: 100%;
+    padding-top: 2em;
+    .chart-alt{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        p{ display:flex; margin:0; padding:0; }
+        .chart-alt-text{
+            color: #fff;
+            height:fit-content;
+            font-size: 2em;
+        }
+        .chart-alt-desc{
+            color:#fff;
+            height:fit-content;
+        }
+    }
+    
+}

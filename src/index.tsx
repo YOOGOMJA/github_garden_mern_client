@@ -21,6 +21,7 @@ import rootReducer from './modules';
 import './styles/userList.scss';
 import UserListContent from './scenes/UserListScene/UserListContent';
 import SettingScene from './scenes/SettingScene';
+import InfoScene from './scenes/InfoScene';
 
 const store = createStore(rootReducer, applyMiddleware(Thunk));
 
@@ -50,6 +51,7 @@ ReactDOM.render(
                 </div>
               </div>
             </Route>
+            <Route path="/info" component={ InfoScene } />
             <Route path="/settings" component={ SettingScene } />
             <Route path="*" component={NotFoundScene} />
           </Switch>

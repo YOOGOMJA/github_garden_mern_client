@@ -1,0 +1,56 @@
+.setting-user-list-container{
+    .list-wrapper{
+        .header{
+            color:#fff;
+            padding:0;
+            margin: 1em 0;
+            font-size: 1.3em;
+            font-weight: 800;
+        }
+        .content-container{
+            display: flex;
+            flex-direction: row;
+
+            .user-info{
+                $avatar-size-small:60px;
+                width: 100px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                margin-right: 1em;
+                .avatar{
+                    width: $avatar-size-small;    
+                    height: $avatar-size-small; 
+                    border-radius: 50%;
+                    overflow: hidden;
+                    position: relative;
+                    .icon{
+                        width: $avatar-size-small;
+                        height: $avatar-size-small;
+                        position: absolute;
+                        background-color: rgba(0,0,0,.5);
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        opacity: 0;
+                        transition: .3s;
+                        svg{ font-size: 1.8em; }
+                    }
+                    img{
+                        width:$avatar-size-small;
+                        height:$avatar-size-small;
+                    }
+                }
+                .info{
+                    p{ margin: .5em 0; font-size: .8em; word-break: break-all; text-align: center; }
+                }
+                &:hover{
+                    cursor: pointer;
+                    .info p { text-decoration: underline; }
+                    .avatar .icon{ opacity: 1; transition: .3s; }
+                }
+            }
+        }
+    }   
+}

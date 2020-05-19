@@ -60,6 +60,13 @@ export async function postChallenge(options:ChallengeUpdateInterface){
     return res.data;
 }
 
+export async function deleteUserFromChallenge(challenge_id:string, user_name:string){
+    const res = await axios.delete<GitFarmResponseInterface>(
+        `${REACT_API_HOST}/api/challenges/${challenge_id}/users/${user_name}`
+    );
+    return res.data;
+}
+
 export interface AllChallengesResponse extends GitFarmResponseInterface{
     data : [ChallengeInterface]
 }

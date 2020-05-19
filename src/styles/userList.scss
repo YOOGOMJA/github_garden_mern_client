@@ -6,6 +6,11 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    // 오류 시 제거해야함 
+    // TODO : 가로길이 제어할 방법 찾아야
+    
+    overflow-x: hidden;
+
     .user-list{
         padding-left: 90px;
         padding-top: 10px;

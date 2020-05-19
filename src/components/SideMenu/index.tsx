@@ -36,7 +36,9 @@ const index = () => {
             </ul>
             <ul className="config">
                 <li>
-                    <a href="#info"><MdInfo/></a>
+                    <NavLink activeClassName="active" to="/info">
+                        <MdInfo />
+                    </NavLink>
                 </li>
                 <li>
                     <a href={ project_info.repository.url } target="_blank" rel="noopener noreferrer"><FaGithub /></a>

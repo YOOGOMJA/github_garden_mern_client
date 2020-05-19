@@ -34,6 +34,8 @@
 
     // height: 100%;
     .user-content-container {
+        
+        max-width: 1300px;
         display: flex;
         flex-direction: row;
         padding: 0 $margin-space;
@@ -172,13 +174,13 @@
             overflow-y: auto;
             .content-wrapper {
                 padding: 10px 0;
-                
+                position: relative;
                 .header{
                     h2{ margin: 0; margin-top:1em; color:#fff; }
                 }
                 .wrapper{
                     display: flex;
-                    max-width: 800px;
+                    width: 800px;
                     overflow-x: auto;
 
                     .card-list{
@@ -190,6 +192,7 @@
                             margin : 1em 0;
                             padding: .6em 1em;
                             min-width:250px;    
+                            width : max-content;
                             background-color: #fff;                        
                             margin-right: 1em;
                             border-radius: .3em;
@@ -215,26 +218,41 @@
                                 font-size: .9em;
                             }
 
-                            &.active {
-                                background-color: #3f51b5;
+                            &.scheduled{
                                 .info svg{ color:#ffeb3b; }
                             }
-                            &.finished .info svg{ color :#4caf50; }
-
-                            .card-delete{
-                                cursor: pointer;
-                                border: 0;
-                                background:none;
-                                color: #ffffff85;
-                                font-size: 1.2em;
-                                position: absolute;
-                                top :.5em;
-                                right: .2em;
-                                display: flex;
-                                justify-content: center;
-                                align-items: center;
-                                svg { display: flex; }
+                            &.active {
+                                background-color: #3f51b5;
+                                .info svg{ color:#f44336; }
                             }
+                            &.finished .info svg{ color :#4caf50; }
+                            
+                            .desc-wrapper{
+                                display:flex;
+                                justify-content: space-between;
+                                align-items: center;
+                                .card-delete{
+                                    margin-top: .3em;
+                                    cursor: pointer;
+                                    border: 0;
+                                    color:#fff;
+                                    background-color: #f44336;
+                                    box-shadow: rgba(12, 12, 13, 0.74) 2px 2px 3px 0px;
+                                    padding-top: .2em;
+                                    border-radius: .3em;
+
+                                    font-size: .9em;
+                                    top :.5em;
+                                    right: .2em;
+                                    display: flex;
+                                    justify-content: center;
+                                    align-items: center;
+                                    svg { display: flex; margin-right: .3em; }
+                                    // p{ color:#d52b1f; }
+                                }
+                            }
+
+                            
                         }
                     }
                 }

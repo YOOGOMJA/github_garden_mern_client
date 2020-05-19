@@ -11,6 +11,8 @@ import 'react-datepicker/dist/react-datepicker.css';
 import "./index.scss";
 import ChallengeDetail from './ChallengeDetail';
 
+import UserList from './UserList';
+
 const SettingScene = () => {
     enum inputModeEnum { EDIT, ADD, HIDE };
 
@@ -18,12 +20,16 @@ const SettingScene = () => {
     const dispatch = useDispatch();
     const [startDate, setStartDate] = useState();
     const [selectedChallengeId, setSelectedChallengeId] = useState("");
-    const [inputMode, setInputMode] = useState(inputModeEnum.ADD);
+    const [inputMode, setInputMode] = useState(inputModeEnum.HIDE);
 
     useEffect(() => {
         dispatch(getLatestChallengeThunk());
         dispatch(getAllChallengesThunk());
     }, []);
+
+    useEffect(() => {
+        console.log('challenged reloaded');
+    }, [all_challenges]);
 
     const ui = {
         getDateString: (start_dt: string | undefined, finish_dt: string | undefined) => {
@@ -93,6 +99,11 @@ const SettingScene = () => {
             challenge={all_challenges.data?.data.find(challenge => challenge.id === selectedChallengeId)}
             onCancel={ ui.onCancel } 
         />
+        {
+            inputMode === inputModeEnum.EDIT ? 
+            <UserList challenge={all_challenges.data?.data.find(challenge => challenge.id === selectedChallengeId)}/>:
+            <></>
+        }
     </div>);
 }
 
