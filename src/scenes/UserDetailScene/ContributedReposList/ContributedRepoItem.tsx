@@ -96,6 +96,7 @@ const ContributedRepoItem = (props: ContributedRepoItemProps) => {
             <div className="header">
                 <p className="sub-title">{repoOwner}</p>
                 <a className="title" href={`https://github.com/${props.data.name}`} target="_blank" rel="noopener noreferrer">{repoName}</a>
+                <p className="desc">{ props.data.description }</p>
                 <div className="languages">
                     {
                         props.data.languages.map((item, key) => {
