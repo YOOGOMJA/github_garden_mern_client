@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams, useHistory } from 'react-router';
+import { useHistory } from 'react-router';
 import { RootState } from '../../../modules';
 import * as UserAPI from '../../../api/user';
 import { clearUserInfoThunk, getUsersInfoThunk, getUserInfoThunk } from '../../../modules/user';

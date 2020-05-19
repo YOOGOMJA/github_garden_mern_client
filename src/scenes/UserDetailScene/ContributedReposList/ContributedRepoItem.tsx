@@ -1,4 +1,4 @@
-import React, { useState, useEffect, CSSProperties } from 'react';
+import React, { useState, useEffect } from 'react';
 import { RepositoryWithUser, RepositoryLanguage } from '../../../api/interfaces/Repository';
 import * as GithubLib from '../../../lib/github';
 import { useHistory } from 'react-router';
@@ -17,7 +17,7 @@ const ContributedRepoItem = (props: ContributedRepoItemProps) => {
         setRepoOwner(splited_repo_name[0] + "/");
         setRepoName(splited_repo_name[1]);
         let _counts = 0;
-        props.data.languages.map(item => {
+        props.data.languages.forEach(item => {
             _counts += item.rate;
         });
         setNumOfLanguages(_counts);
@@ -95,7 +95,7 @@ const ContributedRepoItem = (props: ContributedRepoItemProps) => {
         <div className="repo-item">
             <div className="header">
                 <p className="sub-title">{repoOwner}</p>
-                <a className="title" href={`https://github.com/${props.data.name}`} target="_blank" rel="noopener noreferer">{repoName}</a>
+                <a className="title" href={`https://github.com/${props.data.name}`} target="_blank" rel="noopener noreferrer">{repoName}</a>
                 <div className="languages">
                     {
                         props.data.languages.map((item, key) => {

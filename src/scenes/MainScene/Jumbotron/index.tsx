@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/accessible-emoji */
 import React from 'react';
 import { Summary } from '../../../api/analytics';
 
@@ -14,7 +15,7 @@ const Jumbotron = (props:JumbotronInterface) => {
             <div className="jumbotron">
                 {/* 현재 진행중인 도전 내용 */}
                 <div className="jumbotron-item challenges">
-                    <p className="title">{props.summary?.data.current_challenge.title}🌱</p>
+                    <p className="title">{props.summary?.data.current_challenge.title}<span role="img">🌱</span></p>
                     <div className="jumbotron-item-body">
                         <p className="desc">완료까지</p>
                         <p className="count">{ props.summary ? props.summary.data.current_challenge.left_days : 0 }</p>

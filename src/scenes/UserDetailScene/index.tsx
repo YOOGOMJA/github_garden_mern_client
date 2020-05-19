@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react'
-import { CommonStyles } from '../../styles';
+import React, { useEffect } from 'react'
 import "./index.scss";
 
 import { useParams, useHistory } from 'react-router';
@@ -9,9 +8,6 @@ import { getAllChallengesThunk, getChallengesByUserThunk } from '../../modules/c
 import { getLatestChallengeAttendancesByUserThunk } from '../../modules/analytics';
 import { getRepositoriesByUserThunk } from '../../modules/repositories';
 import { RootState } from '../../modules';
-
-import { GoPulse, GoVerified } from 'react-icons/go';
-import {IoIosCloseCircle } from 'react-icons/io';
 
 import UserDetailHeader from './UserDetailHeader';
 import ParticipatedChallengeList from './ParticipatedChallengeList';
@@ -28,7 +24,7 @@ const UserDetailScene = (props: any) => {
     const history = useHistory();
 
     const { user } = useSelector((state: RootState) => state.user);
-    const { all_challenges, challenges_by_user } = useSelector((state: RootState) => state.challenge);
+    const { challenges_by_user } = useSelector((state: RootState) => state.challenge);
     const { repos_by_user } = useSelector((state: RootState) => state.repository);
     const { latest_challenge_attendances_by_user } = useSelector((state: RootState) => state.analytics);
     const dispatch = useDispatch();

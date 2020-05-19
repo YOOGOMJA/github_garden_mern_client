@@ -1,8 +1,8 @@
 import { ThunkAction } from 'redux-thunk';
 import { RootState } from '..';
 import { UserAction } from './types';
-import { getUserInfo, getUsersInfo, postUserInfo, UsersInfo, getUsersSearch } from '../../api/user';
-import { getUserInfoAsync, getUsersInfoAsync, postUserInfoAsync, CLEAR_POST_USER_INFO, CLEAR_USER_INFO, CLEAR_USERS_INFO, getUsersSearchAsync } from './actions';
+import { getUserInfo, getUsersInfo, postUserInfo, getUsersSearch } from '../../api/user';
+import { getUserInfoAsync, getUsersInfoAsync, postUserInfoAsync, getUsersSearchAsync } from './actions';
 
 export function getUserInfoThunk(user_name:string): ThunkAction<void, RootState, null, UserAction>{
     return async dispatch => {

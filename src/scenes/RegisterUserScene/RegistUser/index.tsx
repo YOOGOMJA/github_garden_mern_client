@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { CSSProperties, useState, useEffect } from 'react';
 import Colors from '../../../components/Colors.json';
 import { Link } from 'react-router-dom';

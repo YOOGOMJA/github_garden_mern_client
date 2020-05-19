@@ -1,6 +1,6 @@
 import axios from 'axios';
 import GitFarmResponseInterface from './interfaces/GitFarmResponse';
-import { RepositoryWithUser, RepositoryWithoutUser, RepositoryDetailWithUser, RepositoryDetailWithoutUser } from './interfaces/Repository';
+import { RepositoryWithUser } from './interfaces/Repository';
 import { getUrl } from './tools/host';
 
 export async function getRepositoriesByUser(user_name:string){

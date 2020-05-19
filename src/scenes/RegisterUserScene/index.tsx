@@ -1,14 +1,8 @@
-import React, { CSSProperties, useState } from 'react';
+import React, { CSSProperties } from 'react';
 import Colors from '../../components/Colors.json';
 import RegistUser from './RegistUser';
 
-import { useSelector, useDispatch } from 'react-redux';
-import { RootState } from '../../modules';
-
 const Index = () => {
-    const { post_user } = useSelector((state:RootState)=>state.user);
-    const [ errorMesg, setErrorMesg ] = useState("오류입니다");
-    
     return (<div style={styles.container}>
         <div style={ stHeader.container }>
             <h2 style={ { ...styles.text, ...stHeader.subTitle } }>안녕하세요!</h2>

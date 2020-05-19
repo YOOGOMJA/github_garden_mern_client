@@ -27,11 +27,11 @@ const UserList = (props: UserListProps) => {
 
     useEffect(() => {
         dispatch(getUsersInfoThunk());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     useEffect(() => {
         if (props.challenge && users.data && users.data.status === "success") {
-            console.log('called');
             // 데이터가 있는 경우에만 
             let _notParticipated: Array<UserInfoInterface> = [];
             users.data.data.forEach(item => {
@@ -66,7 +66,6 @@ const UserList = (props: UserListProps) => {
                 if(isRequested){ window.alert("이미 요청 중 입니다"); return; }
                 setIsRequested(true);
                 const result = await postUserToChallenge(user.login.toString(), props.challenge.id);
-                console.log(result);
                 setIsRequested(false);
                 if(result.status === 'SUCCESS'){
                     dispatch(getUsersInfoThunk());
@@ -81,10 +80,8 @@ const UserList = (props: UserListProps) => {
                     return;
                 }
                 if(isRequested){ window.alert("이미 요청 중 입니다"); return; }
-                console.log(user);
                 setIsRequested(true);
                 const result = await deleteUserFromChallenge(props.challenge.id,user.login.toString());
-                console.log(result);
                 setIsRequested(false);
                 if(result.code > 0){
                     dispatch(getUsersInfoThunk());

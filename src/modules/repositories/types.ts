@@ -1,6 +1,5 @@
 import * as actions from './actions';
 import { ActionType } from 'typesafe-actions';
-import GitFarmReponse from '../../api/interfaces/GitFarmResponse';
 import { RepositoriesByUserResponse } from '../../api/repo';
 
 export type RepositoryAction = ActionType<typeof actions>;

@@ -1,5 +1,4 @@
 import { createAsyncAction } from 'typesafe-actions';
-import GitFarmResponse from '../../api/interfaces/GitFarmResponse';
 import { RepositoriesByUserResponse } from '../../api/repo';
 import { AxiosError } from 'axios';
 

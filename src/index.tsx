@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM, { unstable_renderSubtreeIntoContainer } from 'react-dom';
+import ReactDOM from 'react-dom';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
 
@@ -9,9 +9,8 @@ import UserDetailScene from './scenes/UserDetailScene';
 import RegisterUserScene from './scenes/RegisterUserScene';
 import NotFoundScene from './scenes/NotFoundScene';
 import UserListScene from './scenes/UserListScene';
-import UserNotFoundScene from './scenes/UserNotFoundScene';
 
-import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';

@@ -14,25 +14,25 @@ const InfoScene = () => {
             <div className="content-wrapper">
                 <div className="info-item">
                     <p className="info-title">제작 : </p>
-                    <a className="info-link" href="https://github.com/YOOGOMJA" target="_blank" rel="noopener noreferer">
+                    <a className="info-link" href="https://github.com/YOOGOMJA" target="_blank" rel="noopener noreferrer">
                         유경수
                     </a>
                 </div>
                 <div className="info-item">
                     <p className="info-title">메일 : </p>
-                    <a className="info-link" href="mailto://dev.yoogomja@gmail.com" target="_blank" rel="noopener noreferer">
+                    <a className="info-link" href="mailto://dev.yoogomja@gmail.com" target="_blank" rel="noopener noreferrer">
                         dev.yoogomja@gmail.com
                     </a>
                 </div>
                 <div className="info-item">
                     <p className="info-title">API Github Repository : </p>
-                    <a className="info-link" href="https://github.com/YOOGOMJA/github_farm_mern" target="_blank" rel="noopener noreferer">
+                    <a className="info-link" href="https://github.com/YOOGOMJA/github_farm_mern" target="_blank" rel="noopener noreferrer">
                         YOOGOMJA/github_farm_mern
                     </a>
                 </div>
                 <div className="info-item">
                     <p className="info-title">Client Github Reposioty : </p>
-                    <a className="info-link" href="https://github.com/YOOGOMJA/github_farm_mern_client" target="_blank" rel="noopener noreferer">
+                    <a className="info-link" href="https://github.com/YOOGOMJA/github_farm_mern_client" target="_blank" rel="noopener noreferrer">
                         YOOGOMJA/github_farm_mern_client
                     </a>
                 </div>

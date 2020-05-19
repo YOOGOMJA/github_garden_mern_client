@@ -16,7 +16,7 @@ const UserDetailHeader = (props: UserDetailHeaderProps)=>{
                 if(user.name){
                     return (<div className="user-name">
                         <p className="title">
-                            <a className="title" target="_blank" href={ `https://github.com/${user.login}` }>{ user.name }</a>
+                            <a className="title" target="_blank" href={ `https://github.com/${user.login}` } rel="noopener noreferrer">{ user.name }</a>
                         </p>
                         <p className="subtitle">@{ user.login }</p>
                     </div>);
@@ -25,7 +25,7 @@ const UserDetailHeader = (props: UserDetailHeaderProps)=>{
                     return (
                         <div className="user-name">
                             <p className="title">
-                                <a className="title" target="_blank" href={ `https://github.com/${user.login}` }>{ user.login }</a>
+                                <a className="title" target="_blank" href={ `https://github.com/${user.login}` } rel="noopener noreferrer">{ user.login }</a>
                             </p>
                         </div>
                     );

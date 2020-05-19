@@ -53,8 +53,4 @@ const index = () => {
     );
 }
 
-const styles: { [name: string]: React.CSSProperties } = {
-
-}
-
 export default index;   

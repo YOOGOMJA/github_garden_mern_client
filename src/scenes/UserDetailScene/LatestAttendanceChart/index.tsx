@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 import { LatestChallengeAttendancesByUserReponse } from '../../../api/analytics';
 import * as Highcharts from 'highcharts';
@@ -10,7 +11,6 @@ interface LatestAttendanceChartProps {
 }
 
 const LatestAttendanceChart = (props: LatestAttendanceChartProps) => {
-    // console.log(props.data);
     const initialOptions:any = {
         title: undefined,
         chart:{

@@ -1,16 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import { CommonStyles } from '../../styles';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect } from 'react';
 import "./UserListScene.scss";
 
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../modules';
-import { getUsersSearchThunk, clearUsersSearchThunk, getUsersInfoThunk } from '../../modules/user/thunks';
+import { clearUsersSearchThunk, getUsersInfoThunk } from '../../modules/user/thunks';
 import { Link } from 'react-router-dom';
-import AttendentList from '../MainScene/AttendentList';
 import UserInfoInterface from '../../api/interfaces/UserInfo';
 
 const UserListScene = () => {
-    const { searched_users, users } = useSelector((state: RootState) => state.user);
+    const { users } = useSelector((state: RootState) => state.user);
     const dispatch = useDispatch();
     const avatar_size = 80;
 

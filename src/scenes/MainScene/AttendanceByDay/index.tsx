@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { CSSProperties, useState, useEffect } from 'react';
 import { Card } from '../../../components';
 import * as Highcharts from 'highcharts';
@@ -21,19 +22,7 @@ const AttendanceByDay = (props:AttendanceByDayProps)=>{
         series: [
             {
                 name: "출석률",
-                // colorByPoint: true,
-                data:[
-                    // ...(()=>{
-                    //     let people = [];
-                    //     for(var i = 1 ; i <= 20; i++){
-                    //         people.push({
-                    //             name: 'Day ' + i,
-                    //             y : i + ( i % 2 === 0 ? -1 : +1 ),
-                    //         })    
-                    //     }
-                    //     return people;
-                    // })()
-                ]
+                data:[]
             }
         ]
     };

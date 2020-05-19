@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 import { getLatestChallengeThunk, getAllChallengesThunk } from '../../modules/challenges/thunks';
 import { useSelector, useDispatch } from 'react-redux';
@@ -6,7 +7,6 @@ import moment from 'moment';
 
 import { IoIosAddCircle } from 'react-icons/io';
 
-import DatePicker from "react-datepicker";
 import 'react-datepicker/dist/react-datepicker.css';
 import "./index.scss";
 import ChallengeDetail from './ChallengeDetail';
@@ -16,9 +16,8 @@ import UserList from './UserList';
 const SettingScene = () => {
     enum inputModeEnum { EDIT, ADD, HIDE };
 
-    const { latest_challenge, all_challenges } = useSelector((state: RootState) => state.challenge);
+    const { all_challenges } = useSelector((state: RootState) => state.challenge);
     const dispatch = useDispatch();
-    const [startDate, setStartDate] = useState();
     const [selectedChallengeId, setSelectedChallengeId] = useState("");
     const [inputMode, setInputMode] = useState(inputModeEnum.HIDE);
 
@@ -26,10 +25,6 @@ const SettingScene = () => {
         dispatch(getLatestChallengeThunk());
         dispatch(getAllChallengesThunk());
     }, []);
-
-    useEffect(() => {
-        console.log('challenged reloaded');
-    }, [all_challenges]);
 
     const ui = {
         getDateString: (start_dt: string | undefined, finish_dt: string | undefined) => {
