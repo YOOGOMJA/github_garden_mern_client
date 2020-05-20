@@ -13,11 +13,16 @@ import {
     CLEAR_POST_USER_INFO,
     CLEAR_USER_INFO,
     CLEAR_USERS_INFO,
-
+    
     GET_USERS_SEARCH,
     GET_USERS_SEARCH_SUCCESS,
     GET_USERS_SEARCH_ERROR,
     CLEAR_USERS_SEARCH,
+
+    GET_USERS_PARTICIPATED_LATEST_CHALLENGE_ERROR,
+    GET_USERS_PARTICIPATED_LATEST_CHALLENGE_SUCCESS,
+    GET_USERS_PARTICIPATED_LATEST_CHALLENGE,
+    CLEAR_USERS_PARTICIPATED_LATEST_CHALLENGE,
 } from "./actions";
 
 const initialState: UserState = {
@@ -40,6 +45,11 @@ const initialState: UserState = {
         loading: false,
         error: null,
         data: null,
+    },
+    users_participated_latest_challenge:{
+        loading: false,
+        error : null,
+        data : null,
     }
 };
 
@@ -162,7 +172,38 @@ const user = createReducer<UserState, UserAction>(initialState, {
         searched_users : {
             ...initialState.searched_users
         }
-    })
+    }),
+    // 최신 도전 일자에 참여중인 사용자 목록
+    [GET_USERS_PARTICIPATED_LATEST_CHALLENGE]: (state) => ({
+        ...state,
+        users_participated_latest_challenge: {
+            loading: true,
+            error: null,
+            data: null,
+        },
+    }),
+    [GET_USERS_PARTICIPATED_LATEST_CHALLENGE_SUCCESS]: (state, action) => ({
+        ...state,
+        users_participated_latest_challenge: {
+            loading: false,
+            error: null,
+            data: action.payload,
+        },
+    }),
+    [GET_USERS_PARTICIPATED_LATEST_CHALLENGE_ERROR]: (state, action) => ({
+        ...state,
+        users_participated_latest_challenge: {
+            loading: false,
+            error: action.payload,
+            data: null,
+        },
+    }),
+    [CLEAR_USERS_PARTICIPATED_LATEST_CHALLENGE]: (state:any)=>({
+        ...state,
+        users_participated_latest_challenge : {
+            ...initialState.searched_users
+        }
+    }),
 });
 
 export default user;

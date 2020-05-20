@@ -1,5 +1,5 @@
 import { createAsyncAction } from 'typesafe-actions';
-import { Summary, AllAttendances, Languages, FeaturedRepository, PopularRepository, AllAttendancesByDates, LatestChallengeAttendancesByUserReponse } from '../../api/analytics';
+import { Summary, AllAttendances, Languages, PopularRepository, AllAttendancesByDates, LatestChallengeAttendancesByUserReponse, HottestRepository } from '../../api/analytics';
 import { AxiosError } from 'axios';
 
 
@@ -23,9 +23,9 @@ export const GET_POPULAR_REPOSITORY = 'analytics/GET_POPULAR_REPOSITORY';
 export const GET_POPULAR_REPOSITORY_SUCCESS = 'analytics/GET_POPULAR_REPOSITORY_SUCCESS';
 export const GET_POPULAR_REPOSITORY_ERROR = 'analytics/GET_POPULAR_REPOSITORY_ERROR';
 
-export const GET_FEATURED_REPOSITORY = 'analytics/GET_FEATURED_REPOSITORY';
-export const GET_FEATURED_REPOSITORY_SUCCESS = 'analytics/GET_FEATURED_REPOSITORY_SUCCESS';
-export const GET_FEATURED_REPOSITORY_ERROR = 'analytics/GET_FEATURED_REPOSITORY_ERROR';
+export const GET_HOTTEST_REPOSITORY = 'analytics/GET_HOTTESTD_REPOSITORY';
+export const GET_HOTTEST_REPOSITORY_SUCCESS = 'analytics/GET_HOTTEST_REPOSITORY_SUCCESS';
+export const GET_HOTTEST_REPOSITORY_ERROR = 'analytics/GET_HOTTEST_REPOSITORY_ERROR';
 
 export const GET_LATEST_CHALLENGE_ATTENDANCES_BY_USER = 'analytics/GET_LATEST_CHALLENGE_ATTENDANCES_BY_USER';
 export const GET_LATEST_CHALLENGE_ATTENDANCES_BY_USER_SUCCESS = 'analytics/GET_LATEST_CHALLENGE_ATTENDANCES_BY_USER_SUCCESS';
@@ -62,11 +62,11 @@ export const getPopularRepositoryAsync = createAsyncAction(
     GET_POPULAR_REPOSITORY_ERROR
 )<undefined, PopularRepository, AxiosError>();
 
-export const getFeaturedRepositoryAsync = createAsyncAction(
-    GET_FEATURED_REPOSITORY,
-    GET_FEATURED_REPOSITORY_SUCCESS,
-    GET_FEATURED_REPOSITORY_ERROR
-)<undefined,FeaturedRepository, AxiosError>();
+export const getHottestRepositoryAsync = createAsyncAction(
+    GET_HOTTEST_REPOSITORY,
+    GET_HOTTEST_REPOSITORY_SUCCESS,
+    GET_HOTTEST_REPOSITORY_ERROR
+)<undefined,HottestRepository, AxiosError>();
 
 export const getLatestChallengeAttendancesByUserAsync = createAsyncAction(
     GET_LATEST_CHALLENGE_ATTENDANCES_BY_USER,

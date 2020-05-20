@@ -6,6 +6,7 @@ export default interface ChallengeInterface{
     finish_dt: string,
     title : string,
     created_at: string,
+    is_featured: Boolean,
     participants: [UserInfo]
 };
 

@@ -9,7 +9,7 @@ import AttendanceRatesRank from './AttendanceRatesRank';
 import LanguageUsage from './LanguageUsage';
 import PopularRepositories from './PopularRepositories';
 import AttendentList from './AttendentList';
-import DSCFeaturedRepositories from './DSCFeaturedRepositories';
+import HottestRepository from './HottestRepository';
 import AllAttendanceChart from './AllAttendanceChart';
 
 import { useDispatch, useSelector } from 'react-redux';
@@ -17,25 +17,25 @@ import {
     getSummaryThunk,
     getAllAttendancesThunk,
     getLanguagesPopularityThunk,
-    getFeaturedRepositoryThunk,
+    getHottestRepositoryThunk,
     getPopularRepositoryThunk,
     getAllAttendancesByDatesThunk,
 }
     from '../../modules/analytics';
-import { getUsersInfoThunk } from '../../modules/user';
+import { getUsersParticipatedLatestChallengeThunk } from '../../modules/user';
 import { RootState } from '../../modules';
 
 const MainScene = (props: any) => {
-    const { summary, all_attendances, languages, featured_repo, popular_repo, all_attendances_by_dates } = useSelector((state: RootState) => state.analytics);
-    const { users } = useSelector((state: RootState) => state.user);
+    const { summary, all_attendances, languages , popular_repo , hottest_repo, all_attendances_by_dates } = useSelector((state: RootState) => state.analytics);
+    const { users_participated_latest_challenge } = useSelector((state: RootState) => state.user);
     const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(getSummaryThunk());
         dispatch(getAllAttendancesThunk());
         dispatch(getLanguagesPopularityThunk());
-        dispatch(getUsersInfoThunk());
-        dispatch(getFeaturedRepositoryThunk());
+        dispatch(getUsersParticipatedLatestChallengeThunk());
+        dispatch(getHottestRepositoryThunk());
         dispatch(getPopularRepositoryThunk());
         dispatch(getAllAttendancesByDatesThunk());
     }, [dispatch]);
@@ -64,10 +64,10 @@ const MainScene = (props: any) => {
                 </div>
                 <div className="flex-item" style={styles.columns}>
                     <PopularRepositories repo={popular_repo.data} />
-                    <DSCFeaturedRepositories repo={featured_repo.data} />
+                    <HottestRepository repo={hottest_repo.data} />
                 </div>
                 <div className="flex-item" style={{ flex: 3 }}>
-                    <AttendentList users={users.data} />
+                    <AttendentList users={users_participated_latest_challenge.data} />
                 </div>
             </div>
             <div className="mt">

@@ -16,9 +16,9 @@ import {
     GET_POPULAR_REPOSITORY,
     GET_POPULAR_REPOSITORY_SUCCESS,
     GET_POPULAR_REPOSITORY_ERROR,
-    GET_FEATURED_REPOSITORY,
-    GET_FEATURED_REPOSITORY_SUCCESS,
-    GET_FEATURED_REPOSITORY_ERROR,
+    GET_HOTTEST_REPOSITORY,
+    GET_HOTTEST_REPOSITORY_SUCCESS,
+    GET_HOTTEST_REPOSITORY_ERROR,
     GET_LATEST_CHALLENGE_ATTENDANCES_BY_USER,
     GET_LATEST_CHALLENGE_ATTENDANCES_BY_USER_SUCCESS,
     GET_LATEST_CHALLENGE_ATTENDANCES_BY_USER_ERROR,
@@ -41,12 +41,12 @@ const intialState:AnalyticsState = {
         error : null,
         data: null,
     },
-    featured_repo: {
+    popular_repo: {
         loading: false,
         error :null,
         data: null,
     },
-    popular_repo: {
+    hottest_repo: {
         loading: false,
         error : null,
         data : null,
@@ -189,25 +189,25 @@ const analytics = createReducer<AnalyticsState, AnalyticsAction>(intialState, {
         }
     }),
     // 인증 저장소 
-    [GET_FEATURED_REPOSITORY]:state=>({
+    [GET_HOTTEST_REPOSITORY]:state=>({
         ...state,
-        featured_repo:{
+        hottest_repo:{
             loading:true,
             error:null,
             data:null,
         }
     }),
-    [GET_FEATURED_REPOSITORY_SUCCESS]:(state,action)=>({
+    [GET_HOTTEST_REPOSITORY_SUCCESS]:(state,action)=>({
         ...state, 
-        featured_repo:{
+        hottest_repo:{
             loading: false,
             error: null,
             data: action.payload
         }
     }),
-    [GET_FEATURED_REPOSITORY_ERROR]:(state, action)=>({
+    [GET_HOTTEST_REPOSITORY_ERROR]:(state, action)=>({
         ...state,
-        featured_repo:{
+        hottest_repo:{
             loading:false,
             error: action.payload,
             data: null,

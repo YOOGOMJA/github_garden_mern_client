@@ -1,8 +1,8 @@
 import { ThunkAction } from 'redux-thunk';
 import { RootState } from '..';
 import { UserAction } from './types';
-import { getUserInfo, getUsersInfo, postUserInfo, getUsersSearch } from '../../api/user';
-import { getUserInfoAsync, getUsersInfoAsync, postUserInfoAsync, getUsersSearchAsync } from './actions';
+import { getUserInfo, getUsersInfo, postUserInfo, getUsersSearch, getUsersParticipatedLatestChallenge } from '../../api/user';
+import { getUserInfoAsync, getUsersInfoAsync, postUserInfoAsync, getUsersSearchAsync, getUsersParticipatedLatestChallengeAsync } from './actions';
 
 export function getUserInfoThunk(user_name:string): ThunkAction<void, RootState, null, UserAction>{
     return async dispatch => {
@@ -87,3 +87,26 @@ export function clearUsersSearchThunk():ThunkAction<void, RootState, null, UserA
         dispatch(cancel());
     }
 }
+
+
+export function getUsersParticipatedLatestChallengeThunk():ThunkAction<void,RootState,null,UserAction>{
+    return async dispatch=>{
+        const { request, success, failure } = getUsersParticipatedLatestChallengeAsync;
+        dispatch(request());
+        try{
+            const response = await getUsersParticipatedLatestChallenge();
+            dispatch(success(response));
+        }
+        catch(e){
+            dispatch(failure(e));
+        }
+    }
+}
+
+export function clearUsersParticipatedLatestChallengeThunk():ThunkAction<void, RootState, null, UserAction>{
+    return dispatch=>{
+        const { cancel } = getUsersParticipatedLatestChallengeAsync;
+        dispatch(cancel());
+    }
+}
+

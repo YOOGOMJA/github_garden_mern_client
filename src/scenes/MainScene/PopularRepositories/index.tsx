@@ -21,11 +21,12 @@ const PopularRepositoryInfo = (props: PopularRepositoryProps) => {
     },[props, props.repo]);
 
     return (<div style={styles.container}>
-        <Card title="요즘 힙한 저장소" desc="현재 가장 활발한 활동을 보이고 있는 저장소들 입니다">
+        <Card title="가장 힙한 저장소😎" desc="가장 많은 정원사님들이 참여중인 저장소입니다">
             <div style={styles.wrapper}>
                 <div style={itemStyles.container}>
                     <p style={{ ...itemStyles.text, ...itemStyles.owner }}>{ owner }</p>
                     <p style={{ ...itemStyles.text, ...itemStyles.title }}>{ repoName }</p>
+                    <p style={{ ...itemStyles.text, ...itemStyles.owner }}>{props.repo?.data.repo.description}</p>
                     <div style={itemStyles.factorContainer}>
                         <div style={itemStyles.factorItemContainer}>
                             <p style={{ ...itemStyles.text, ...itemStyles.factorTitle }}>{props.repo?.data.commit_cnt}</p>
@@ -78,7 +79,7 @@ const itemStyles: { [name: string]: CSSProperties } = {
         borderRadius: '10px',
         padding: '12px 25px',
         // width:'30%',
-        marginBottom: '20px',
+        marginBottom: '10px',
         boxShadow: "2px 2px 3px 0px" + Colors.shadow,
     },
     factorContainer: {
@@ -91,7 +92,6 @@ const itemStyles: { [name: string]: CSSProperties } = {
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-
     },
     factorTitle: {
         fontWeight: 800,

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import DatePicker from "react-datepicker";
 import ChallengeInterface from '../../api/interfaces/Challenge';
-import { deleteChallenge } from '../../api/challenge';
+import { deleteChallenge, putChallengeFeatured } from '../../api/challenge';
 import { getAllChallengesThunk } from '../../modules/challenges';
 import moment from 'moment';
 import { useDispatch } from 'react-redux';
@@ -24,6 +24,21 @@ const ChallengeDetail = (props: ChallengeDetail) => {
     const [ isRequested , setIsRequested ] = useState(false);
 
     const dispatch = useDispatch();
+
+    const ui = {
+        featuredBtn : (challenge : ChallengeInterface| undefined)=>{
+            if(challenge !== undefined){
+                return (
+                    <button className={ "btn " + (!challenge.is_featured ? "featured" : 'not-featured') } type="button" onClick={ ()=>fn.submit.featured(challenge.id, !challenge.is_featured) }>
+                        { !challenge.is_featured ? '인증 처리' : '미인증 처리'  }
+                    </button>
+                );
+            }
+            else{
+                return (<></>);
+            }
+        }
+    }
 
     const fn = {
         init: (challenge?: ChallengeInterface) => {
@@ -145,6 +160,28 @@ const ChallengeDetail = (props: ChallengeDetail) => {
                         }
                     }
                 }
+            },
+            featured : async (challenge_id:string | undefined, is_featured : Boolean)=>{
+                if(isRequested){ window.alert('요청 중 입니다');return; }
+                if(challenge_id){
+                    if(window.confirm(is_featured ? '이 요청을 인증 처리 할까요?\n인증 처리 시, 모든 통계는 해당 프로젝트를 기준으로 합니다' : '이 요청을 미인증 처리할까요?')){
+                        setIsRequested(true);
+                        const result = await putChallengeFeatured(challenge_id, is_featured);
+                        setIsRequested(false);
+                        if(result.code > 0){
+                            setDateError("");
+                            setTitleError("");
+                            // 삭제됐으니, 선택 취소 처리
+                            dispatch(getAllChallengesThunk());
+                            if(is_featured){
+                                window.alert('이제 해당 프로젝트가 메인 정원사 프로젝트가 됩니다. 모든 통계는 해당 프로젝트를 기준으로 합니다');
+                            }
+                        }
+                        else{
+                            window.alert(result.error.message || `오류가 발생했습니다 : \n${result.error}`);
+                        }
+                    }
+                }
             }
         }
     }
@@ -226,6 +263,7 @@ const ChallengeDetail = (props: ChallengeDetail) => {
                     {
                         props.mode === inputModeEnum.EDIT ?
                             <>
+                                { ui.featuredBtn(props.challenge) }
                                 <button
                                     className="btn add"
                                     onClick={

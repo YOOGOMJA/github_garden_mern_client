@@ -49,9 +49,9 @@ export async function getPopularRepository() {
     return res.data;
 }
 
-export async function getFeaturedRepository() {
-    const res = await axios.get<FeaturedRepository>(
-        `${REACT_API_HOST}/api/analysis/repo/featured`
+export async function getHottestRepository(){
+    const res = await axios.get<HottestRepository>(
+        `${REACT_API_HOST}/api/analysis/repo/hottest`
     );
     return res.data;
 }
@@ -116,7 +116,7 @@ export interface Languages extends GitFarmResponseInterface {
     data: [LanguagePopularityInterface];
 }
 
-export interface FeaturedRepository extends GitFarmResponseInterface {
+export interface HottestRepository extends GitFarmResponseInterface {
     data: RepositoryDetailWithoutUser;
 }
 

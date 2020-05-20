@@ -24,6 +24,13 @@ export async function postUserInfo(user_name: string){
     return response.data;
 }
 
+export async function getUsersParticipatedLatestChallenge(){
+    const response = await axios.get<UsersInfo>(
+        `${REACT_API_HOST}/api/users/latest`
+    );
+    return response.data;
+}
+
 export async function deleteUser(user_name:string){
     const response = await axios.delete<GitFarmResponseInterface>(
         `${REACT_API_HOST}/api/users/${user_name}`
@@ -49,8 +56,6 @@ export async function getUsersSearch(user_name:string){
     );
     return reponse.data;
 }
-
-
 
 export interface UsersInfo extends GitFarmResponseInterface{
     data: [UserInfoInterface]

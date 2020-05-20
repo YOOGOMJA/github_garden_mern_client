@@ -45,6 +45,15 @@ export async function putChallenge(challenge_id: string, options:ChallengeUpdate
     return res.data;
 }
 
+export async function putChallengeFeatured(challenge_id: string, is_featured:Boolean){
+    const res = await axios.put<GitFarmResponseInterface>(
+        `${REACT_API_HOST}/api/challenges/${challenge_id}/featured`,
+        { is_featured : is_featured }
+    );
+    return res.data;
+}
+
+
 export async function deleteChallenge(challenge_id: string){
     const res = await axios.delete<GitFarmResponseInterface>(
         `${REACT_API_HOST}/api/challenges/${challenge_id}`

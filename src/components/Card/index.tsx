@@ -43,7 +43,7 @@ const styles: { [name: string]: CSSProperties } = {
     wrapper: {
         // borderTop:'1px solid #4c5365',
         // marginTop:'10px',
-        paddingTop:'10px',
+        // paddingTop:'10px',
         paddingBottom:'10px',
         // paddingBottom:'15px',
         // backgroundColor:'red',

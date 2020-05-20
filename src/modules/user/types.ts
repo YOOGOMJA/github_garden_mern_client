@@ -25,5 +25,10 @@ export type UserState = {
         loading: boolean,
         error : Error | null,
         data : UsersInfo | null,
+    },
+    users_participated_latest_challenge : {
+        loading : boolean,
+        error : Error | null,
+        data : UsersInfo | null,
     }
 };

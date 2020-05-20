@@ -1,6 +1,6 @@
 import * as actions from './actions';
 import { ActionType } from 'typesafe-actions';
-import { Summary, AllAttendances, Languages, PopularRepository, FeaturedRepository, AllAttendancesByDates, LatestChallengeAttendancesByUserReponse } from '../../api/analytics';
+import { Summary, AllAttendances, Languages, PopularRepository, HottestRepository, AllAttendancesByDates, LatestChallengeAttendancesByUserReponse } from '../../api/analytics';
 
 
 export type AnalyticsAction = ActionType<typeof actions>;
@@ -26,15 +26,15 @@ export type AnalyticsState = {
         error: Error | null,
         data : Languages | null,
     },
-    featured_repo: {
+    popular_repo: {
         loading: boolean,
         error : Error | null,
         data : PopularRepository | null,
     },
-    popular_repo: {
+    hottest_repo : {
         loading: boolean,
         error : Error | null,
-        data : FeaturedRepository | null,
+        data : HottestRepository | null,
     },
     latest_challenge_attendances_by_user : {
         loading: boolean,

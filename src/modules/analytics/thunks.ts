@@ -5,7 +5,7 @@ import {
     getSummary,
     getAllAttendances,
     getLanguagesPopularity,
-    getFeaturedRepository,
+    getHottestRepository,
     getPopularRepository,
     getAllAttendancesByDates,
     getLatestChallengeAttendancesByUser
@@ -14,7 +14,7 @@ import {
     getSummaryAsync,
     getAllAttendancesAsync,
     getLanguagesPopularityAsync,
-    getFeaturedRepositoryAsync,
+    getHottestRepositoryAsync,
     getPopularRepositoryAsync,
     getAllAttendancesByDatesAsync,
     getLatestChallengeAttendancesByUserAsync,
@@ -110,17 +110,17 @@ export function getPopularRepositoryThunk(): ThunkAction<
     };
 }
 
-export function getFeaturedRepositoryThunk(): ThunkAction<
+export function getHottestRepositoryThunk(): ThunkAction<
     void,
     RootState,
     null,
     AnalyticsAction
 > {
     return async (dispatch) => {
-        const { request, success, failure } = getFeaturedRepositoryAsync;
+        const { request, success, failure } = getHottestRepositoryAsync;
         dispatch(request());
         try {
-            const response = await getFeaturedRepository();
+            const response = await getHottestRepository();
             dispatch(success(response));
         } catch (e) {
             dispatch(failure(e));

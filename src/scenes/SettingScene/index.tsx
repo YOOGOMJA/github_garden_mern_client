@@ -6,6 +6,7 @@ import { RootState } from '../../modules/';
 import moment from 'moment';
 
 import { IoIosAddCircle } from 'react-icons/io';
+import { GoVerified } from 'react-icons/go';
 
 import 'react-datepicker/dist/react-datepicker.css';
 import "./index.scss";
@@ -78,7 +79,10 @@ const SettingScene = () => {
                                     ui.getDateString(item.start_dt, item.finish_dt)
                                 }
                             </p>
-                            <p className="desc">현재 참가자 수 : {item.participants.length}</p>
+                            <div className="desc">
+                                <p className="text">현재 참가자 수 : {item.participants.length}</p>
+                                { item.is_featured ? <p className="text"><GoVerified/>인증됨</p> : <></> }
+                            </div>
                         </div>
                     );
                 })}
