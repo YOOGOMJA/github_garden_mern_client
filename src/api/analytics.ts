@@ -3,7 +3,7 @@ import GitFarmResponseInterface from "./interfaces/GitFarmResponse";
 import UserInfoInterface from "./interfaces/UserInfo";
 import { RepositoryDetailWithoutUser } from "./interfaces/Repository";
 
-const REACT_API_HOST = "http://localhost:4000";
+const REACT_API_HOST = process.env.REACT_APP_API_HOST;
 
 export async function getSummary() {
     const res = await axios.get<Summary>(

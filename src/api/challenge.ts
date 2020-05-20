@@ -2,7 +2,7 @@ import axios from 'axios';
 import GitFarmResponseInterface from './interfaces/GitFarmResponse';
 import ChallengeInterface, { ChallengeUpdateInterface } from './interfaces/Challenge';
 
-const REACT_API_HOST = 'http://localhost:4000';
+const REACT_API_HOST = process.env.REACT_APP_API_HOST;
 
 // 여태 개설된 모든 도전 종류
 export async function getAllChallenges(){
