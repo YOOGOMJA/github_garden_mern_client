@@ -44,7 +44,7 @@ const MainScene = (props: any) => {
         <div className="contents">
             <div className="header">
                 <h1>
-                    안녕하세요! <b>정원사 프로젝트</b>입니다!
+                    안녕하세요!<br className="line-break"/><b>정원사 프로젝트</b>입니다!
                 </h1>
             </div>
             <Jumbotron summary={summary.data} error={summary.error} loading={summary.loading} />

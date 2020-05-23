@@ -25,4 +25,7 @@
 }
 
 $condition-mobile : "Only screen and (max-width : 480px)";
-$condition-desktop : "screen and (min-width : 769px)"
+$condition-desktop : "screen and (min-width : 769px)";
+
+$sidemenu-width-desktop : 80px;
+$sidemenu-height-mobile : 60px;
