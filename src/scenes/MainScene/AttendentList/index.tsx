@@ -1,8 +1,10 @@
-import React, { CSSProperties } from 'react';
+import React from 'react';
 import { Card } from '../../../components';
 import { UsersInfo } from '../../../api/user';
 import UserInfoInterface from '../../../api/interfaces/UserInfo';
 import { Link } from 'react-router-dom';
+
+import './AttendentList.scss';
 
 interface AttendentListProps {
     users: UsersInfo | null,
@@ -21,24 +23,23 @@ const index = (props: AttendentListProps) => {
     return (
         <Card title="참여중인 정원사들" desc="현재 정원사 프로젝트에 참여중인 정원사분들입니다">
             {/* 전체 감싸기 */}
-            <div style={styles.wrapper}>
+            <div className="attendent-list-container">
                 {
                     (() => {
                         if (props.users && props.users.data) {
                             return props.users.data.map(user => {
-                                return (<div key={ user.id.toString() } style={styles.itemContainer}>
-                                    <div style={styles.avatarWrapper}>
+                                return (<div key={ user.id.toString() } className="attendent">
+                                    <div className="attendent-avatar">
                                         {/* 아이콘 */}
-                                        <img style={ styles.avatar } src={ getUserAvatarUrl(user).toString() } alt={ user.login + " github avatar image" }/>
+                                        <img src={ getUserAvatarUrl(user).toString() } alt={ user.login + " github avatar image" }/>
                                     </div>
-                                    <div style={styles.descWrapper}>
+                                    <div className="attendent-desc">
                                         {/* 설명부 */}
-                                        <p style={styles.username}>{user.name}</p>
-                                        <p style={styles.displayName}>{user.login}</p>
+                                        <p className="text user-name">{user.name}</p>
+                                        <p className="text display-name">{user.login}</p>
                                     </div>
-                                    <div style={styles.linkWrapper}>
-                                        {/* <a style={styles.link} target="_blank" rel="noopener noreferrer" href={user.html_url.toString()}>보기</a> */}
-                                        <Link style={ styles.link } to={ `/users/${user.login}` }>보기</Link>
+                                    <div className="attendent-link">
+                                        <Link to={ `/users/${user.login}` }>보기</Link>
                                     </div>
                                 </div>)
                             });
@@ -55,69 +56,6 @@ const index = (props: AttendentListProps) => {
     );
 }
 
-const styles: { [name: string]: CSSProperties } = {
-    wrapper: {
-        height: '440px',
-        overflowY: 'auto',
-        marginBottom: '20px',
-    },
-    itemContainer: {
-        display: 'flex',
-        flexDirection: 'row',
-        marginBottom: '15px',
-        borderBottom: '1px solid rgba(0,0,0,.1)',
-        paddingBottom: '15px',
-    },
-    avatarWrapper: {
-        // flex: 1,
-        display:"flex",
-        width:`${avatar_size}px`,
-        height:`${avatar_size}px`,
-        justifyContent:'center',
-        alignContent:'center',
-        overflow:'hidden',
-        borderRadius:'50%',
-        boxShadow: '1px 1px 3px rgba(0,0,0,0.2)'
-    },
-    avatar:{
-        width:`${avatar_size}px`,
-        height:`${avatar_size}px`,
-    },
-    username: {
-        fontSize: '1.3em',
-        margin: 0,
-        padding: 0,
-        color: "#fff",
-    },
-    displayName: {
-        fontSize: '.8em',
-        margin: 0,
-        padding: 0,
-        color: "#fff",
-    },
-    descWrapper: {
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        padding: '0 10px',
-        flex: 3,
-    },
-    linkWrapper: {
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        flex: 1,
-    },
-    link: {
-        textDecoration: 'none',
-        fontSize: '.9em',
-        color: 'white',
-        padding: '5px 15px',
-        backgroundColor: '#27ae60',
-        height: 'fit-content',
-        borderRadius: '5px',
-        boxShadow: '1px 1px 3px rgba(0,0,0,0.2)'
-    }
-}
+
 
 export default index;

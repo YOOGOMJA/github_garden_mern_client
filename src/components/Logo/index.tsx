@@ -2,8 +2,8 @@ import React from 'react';
 import logo from './logo.svg';
 
 interface LogoProps {
-    width: Number,
-    height: Number,
+    width?: Number,
+    height?: Number,
 }
 
 const index = (props: LogoProps) => {

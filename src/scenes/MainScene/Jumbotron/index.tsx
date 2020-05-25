@@ -19,7 +19,6 @@ const Jumbotron = (props: JumbotronInterface) => {
         slideClass:'jumbotron-item',
         containerClass:'jumbotron',
         centeredSlides: true,
-
     }
     return (
         <>

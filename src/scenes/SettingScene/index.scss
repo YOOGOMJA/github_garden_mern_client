@@ -1,3 +1,5 @@
+@import '../../styles/mixins';
+
 .contents.settings{
     p{ margin:0; padding:0; }
     h1{ margin:0; padding:0; }
@@ -77,7 +79,15 @@
         .detail-container{
             display: flex;
             flex-direction: column;
-            width: 750px;
+
+            @media #{ $condition-desktop }{
+                width: 750px;
+            }
+
+            @media #{ $condition-mobile }{
+                width: 100%;
+            }
+
             .input{
                 width: 100%;
                 background:none;
@@ -105,9 +115,17 @@
             }
             .dates-container{
                 display: flex;
-                flex-direction: row;
                 justify-content: space-between;
                 margin-top: 1em;
+
+                @media #{ $condition-desktop }{
+                    flex-direction: row;
+                }
+    
+                @media #{ $condition-mobile }{
+                    flex-direction: column;                
+                }
+
                 .date-container{
                     width: 350px;
                     .react-datepicker-wrapper{ display: flex; }
@@ -122,13 +140,22 @@
             flex-direction: row;
             .btn{
                 background-color: gray;
-                font-size: 1.3em;
                 border: 0;
-                padding: .3em 1em;
                 margin-right: .5em;
                 border-radius: .3em;
                 box-shadow: rgba(12, 12, 13, 0.74) 2px 2px 3px 0px;
-                color:#fff;
+                color:$colors-white;
+
+                @media #{ $condition-desktop }{
+                    font-size: 1.3em;
+                    padding: .3em 1em;    
+                }
+
+                @media #{ $condition-mobile }{
+                    font-size: 1.1em;
+                    padding: .5em .5em;
+                }
+
                 &.edit, &.add{
                     background-color: #3f51b5;
                 }

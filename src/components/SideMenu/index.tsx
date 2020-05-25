@@ -16,7 +16,7 @@ const SideMenu = () => {
                 <MdMenu/>
             </button>
             <a className="logo" href="/">
-                <Logo width={ 45 } height={45}/>
+                <Logo/>
             </a>
             {/* 버튼 위치 */}
             <div className={ "sidemenu-wrapper " + (isCollapsed ? "" : " not-collapsed") }>

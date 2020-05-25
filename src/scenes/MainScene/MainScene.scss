@@ -6,131 +6,155 @@
     display: flex;
 }
 
-.contents{
-    height:100%;
+.contents {
+    height: 100%;
     display: flex;
     flex-direction: column;
 
-    @media #{ $condition-desktop }{
+    @media #{ $condition-desktop } {
         margin-left: $sidemenu-width-desktop;
         padding: 50px 0px 50px 30px;
     }
     @media #{ $condition-mobile } {
         margin-left: 0;
-        padding : ($sidemenu-height-mobile + 15px) 15px 15px 15px;
+        padding: ($sidemenu-height-mobile + 15px) 15px 15px 15px;
     }
 
-    .header{
-        h1{
+    .header {
+        h1 {
             margin: 0;
             padding: 0;
             font-weight: 100;
             color: #fff;
-            b{
-                color:#28ae60;
+            b {
+                color: #28ae60;
             }
         }
-        @media #{ $condition-desktop }{
+        @media #{ $condition-desktop } {
             margin-bottom: 50px;
-            h1{
+            h1 {
                 font-size: 3.2em;
             }
-            .line-break{
+            .line-break {
                 display: none;
             }
         }
-        @media #{ $condition-mobile }{
+        @media #{ $condition-mobile } {
             margin-bottom: 3rem;
-            h1{
-                font-size : 2rem;
-
+            h1 {
+                font-size: 2rem;
             }
         }
     }
 
-    .jumbotron{
+    .jumbotron {
         width: 100%;
-        display: flex;
-        flex-direction: row;
-        .jumbotron-item{
+        overflow: hidden;
+        @media #{ $condition-mobile } {
+            display: flex;
+            flex-direction: row;
+        }
+
+        .jumbotron-item {
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: flex-start;
             border-radius: 10px;
-            min-width: 220px;
-            
-            // margin-right: 20px;
             box-shadow: 2px 2px 4px 0px #0c0c0dbd;
-            padding: 10px 30px;
-            color:white;
+            color: white;
 
-            p{ margin:0;padding:0; }
+            @media #{ $condition-desktop } {
+                min-width: 220px;
+                
+            }
+            @media #{ $condition-mobile } {
+                min-width: 100%;
+                margin-bottom: 2em;
+            }
 
-            .title{
+            p {
+                margin: 0;
+                padding: 0;
+            }
+
+            .title {
                 font-weight: 600;
                 font-size: 1.2em;
-                flex:2;
+                flex: 2;
                 display: flex;
                 align-items: center;
                 text-align: center;
+
+                margin-top: 10px;
+                margin-left: 30px;
             }
 
-            .jumbotron-item-body{    
+            .jumbotron-item-body {
                 display: flex;
                 flex-direction: row;
                 align-items: flex-end;
-                flex:3;
+                flex: 3;
+                margin-bottom: 10px;
+                margin-left: 30px;
 
-                .count{
+                .count {
                     font-weight: 800;
                     font-size: 2em;
                 }
-                .desc{
+                .desc {
                     font-weight: 300;
                 }
             }
-            
-            &.challenges{
+
+            &.challenges {
                 background-color: #f44336;
             }
-            &.projects{
+            &.projects {
                 background-color: #f1c40f;
             }
-            &.participants{
+            &.participants {
                 background-color: #1abc9c;
             }
-            &.commits{
+            &.commits {
                 background-color: #3498db;
             }
-            &.period{
+            &.period {
                 background-color: #9b59b6;
             }
         }
     }
 
-    @mixin flex-box($direction){
-        display:flex;
+    @mixin flex-box($direction) {
+        display: flex;
         flex-direction: $direction;
         justify-content: center;
     }
 
-    .flex-2{
-        @include flex-box('row');
-        justify-content: space-between;
-        .flex-item{
-            flex:6;
+    .flex-items {
+        @include flex-box("row");
+        
+        @media #{ $condition-desktop } {
+            justify-content: space-between;
+            margin-top: 2.5em;
         }
-    }
-    .flex-3{
-        @include flex-box('row');
-        justify-content: space-between;
+
+        @media #{ $condition-mobile } {
+            flex-direction: column;
+            .flex-item{ margin-bottom: 20px; }
+        }
+
         .flex-item{
-            flex:4;
+            display: flex;
+            justify-content: space-between;
+            flex-direction: column;
         }
     }
 
-    .mt{
+    .flex-items.flex-2{ .flex-item{ flex:6; } }
+    .flex-items.flex-3{ .flex-item{ flex:4; } }
+    
+    .mt {
         margin-top: 2.5em;
     }
 }

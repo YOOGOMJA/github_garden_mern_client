@@ -1,6 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { CSSProperties, useState, useEffect } from 'react';
-import Colors from '../../../components/Colors.json';
 import { Link } from 'react-router-dom';
 
 import { useSelector, useDispatch } from 'react-redux';
@@ -86,9 +85,9 @@ const RegistUser = (props: RegisterUserProps) => {
         // 에러 메시지가 있는 경우 에러 메시지 태그를 생성
         getForm: () => {
             if (inputMode === INPUT_MODE_FORM) {
-                return <div style={styles.wrapper}>
-                    <input type="text" placeholder="github 유저 계정을 입력해주세요" style={styles.input} value={ userName } onChange={ e=>setUserName(e.target.value) } onKeyPress={ e=>{if(e.which === 13 || e.keyCode === 13){ /*setUserName(e.currentTarget.value); fn.submit();*/ }} }/>
-                    <button type="button" style={styles.btn} onClick={fn.submit}>
+                return <div className="wrapper">
+                    <input type="text" placeholder="github 유저 계정을 입력해주세요" className="input-user-name" value={ userName } onChange={ e=>setUserName(e.target.value) } onKeyPress={ e=>{if(e.which === 13 || e.keyCode === 13){ /*setUserName(e.currentTarget.value); fn.submit();*/ }} }/>
+                    <button type="button" className="btn" onClick={fn.submit}>
                         {
                             isRequested ? <Indicator/> : "등록"
                         }
@@ -96,87 +95,20 @@ const RegistUser = (props: RegisterUserProps) => {
                 </div>;
             }
             else {
-                return <div style={styles.resultWrapper}>
-                    <p style={styles.resultSubText}>어서오세요!</p>
-                    <p style={styles.resultText} >입력하신 '<b style={styles.resultTextHighlight}>{insertedUserName}</b>'가 등록되었습니다!</p>
-                    <Link to={`users/${insertedUserName}`} style={styles.resultLink}>내 정보 확인하러 가기</Link>
+                return <div className="wrapper result">
+                    <p className="text sub-title">어서오세요!</p>
+                    <p className="text title" >입력하신 '<b className="text highlight">{insertedUserName}</b>'가 등록되었습니다!</p>
+                    <Link to={`users/${insertedUserName}`} className="text link">내 정보 확인하러 가기</Link>
                 </div>;
             }
         },
     }
 
-    return (<div style={{ ...props.style, ...styles.container }}>
-        { errorMesg !== "" ? <p style={styles.error}>{errorMesg}</p> : <></> }
+    return (<div className="register-user">
+        { errorMesg !== "" ? <p className="text error">{errorMesg}</p> : <></> }
         {ui.getForm()}
     </div>);
 }
 
-const styles: { [name: string]: CSSProperties } = {
-    container: {
-        margin: '150px 0',
-        maxWidth: '800px',
-    },
-    wrapper: {
-        display: 'flex',
-        flexDirection: 'row',
-    },
-    input: {
-        flex: 9,
-        border: 0,
-        backgroundColor: '#0000',
-        fontSize: '3em',
-        fontWeight: 100,
-        borderBottom: '1px solid ' + Colors.text.highlight,
-        color: Colors.text.default,
-    },
-    btn: {
-        flex: 2,
-        border: 0,
-        backgroundColor: '#0000',
-        color: Colors.text.highlight,
-        fontWeight: 100,
-        fontSize: '3em',
-        cursor: 'pointer',
-    },
-    error: {
-        margin: 0,
-        padding: 0,
-        fontWeight: 100,
-        color: Colors.red,
-        fontSize: '1.5em',
-    },
-    resultWrapper: {
-        display: 'flex',
-        flexDirection: 'column',
-    },
-    resultSubText: {
-        fontWeight: 100,
-        fontSize: '2em',
-        color: '#fff',
-        margin: 0,
-        padding: 0,
-    },
-    resultText: {
-        fontSize: '2.5em',
-        fontWeight: 100,
-        color: '#fff',
-        margin: 0,
-        padding: 0,
-    },
-    resultTextHighlight: {
-        fontWeight: 800,
-        color: Colors.text.highlight,
-        margin: 0,
-        padding: 0,
-    },
-    resultLink: {
-        fontWeight: 100,
-        fontSize: '1.5em',
-        textDecoration: 'none',
-        color: Colors.text.highlight,
-        margin: 0,
-        padding: 0,
-    },
-}
 
 export default RegistUser;

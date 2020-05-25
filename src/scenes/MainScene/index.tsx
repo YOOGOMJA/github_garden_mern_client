@@ -1,9 +1,9 @@
-import React, { CSSProperties, useEffect } from 'react'
+import React, { useEffect } from 'react'
+import { isMobile } from 'react-device-detect';
 import "./MainScene.scss";
 import './highcharts-additional.scss';
 
 import Jumbotron from './Jumbotron';
-
 import AttendanceByDay from './AttendanceByDay';
 import AttendanceRatesRank from './AttendanceRatesRank';
 import LanguageUsage from './LanguageUsage';
@@ -49,7 +49,7 @@ const MainScene = (props: any) => {
             </div>
             <Jumbotron summary={summary.data} error={summary.error} loading={summary.loading} />
             {/* 영역을 둘로 나눔 */}
-            <div className="flex-2 mt">
+            <div className="flex-items flex-2">
                 <div className="flex-item">
                     <AttendanceRatesRank attendances={all_attendances.data} />
                 </div>
@@ -58,32 +58,41 @@ const MainScene = (props: any) => {
                 </div>
             </div>
             {/* 영역을 셋으로 나눔 */}
-            <div className="flex-3 mt">
+            <div className="flex-items flex-3">
                 <div className="flex-item">
                     <LanguageUsage languages={languages.data} error={languages.error} loading={languages.loading} />
                 </div>
-                <div className="flex-item" style={styles.columns}>
-                    <PopularRepositories repo={popular_repo.data} />
-                    <HottestRepository repo={hottest_repo.data} />
-                </div>
+                {
+                    isMobile ? (
+                        <>
+                            <div className="flex-item" >
+                                <PopularRepositories repo={popular_repo.data} />
+                            </div>
+                            <div className="flex-item" >
+                                <HottestRepository repo={hottest_repo.data} />
+                            </div>
+                        </>    
+                    ) : 
+                    (
+                        <div className="flex-item" >
+                            <PopularRepositories repo={popular_repo.data} />
+                            <HottestRepository repo={hottest_repo.data} />
+                        </div>
+                    )
+                }
+                
                 <div className="flex-item" style={{ flex: 3 }}>
                     <AttendentList users={users_participated_latest_challenge.data} />
                 </div>
             </div>
-            <div className="mt">
-                <AllAttendanceChart attendances={all_attendances.data} />
+            <div className="flex-items">
+                <div className="flex-item">
+                    <AllAttendanceChart attendances={all_attendances.data} />
+                </div>
             </div>
         </div>
     );
 }
 
-const styles: { [name: string]: React.CSSProperties } = {
-    columns: {
-        display: 'flex',
-        justifyContent: 'space-between',
-        flexDirection: 'column',
-        // height: '100%',
-    }
-}
 
 export default MainScene;
