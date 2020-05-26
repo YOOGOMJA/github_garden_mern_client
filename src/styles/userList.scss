@@ -1,21 +1,32 @@
+@import './mixins';
+
 // essential
 
 .users-contents-container {
-    height:-webkit-fill-available;
+    
     width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    overflow-x: hidden;
     // 오류 시 제거해야함 
     // TODO : 가로길이 제어할 방법 찾아야
     
-    overflow-x: hidden;
+
+    @media #{ $condition-desktop }{ height:-webkit-fill-available; }
+    @media #{ $condition-mobile }{ height: max-content; }
 
     .user-list{
-        padding-left: 90px;
-        padding-top: 10px;
-        padding-bottom : 10px;
-        min-width: 400px;
+        @media #{ $condition-desktop }{
+            padding-left: 90px;
+            padding-top: 10px;
+            padding-bottom : 10px;
+            min-width: 400px;
+        }
+        @media #{ $condition-mobile }{
+            width: 100%;
+            padding-top: $sidemenu-height-mobile;
+        }
     }
     .user-list-content{
         width: 100%;

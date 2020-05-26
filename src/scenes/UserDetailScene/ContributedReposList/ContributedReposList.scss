@@ -1,96 +1,152 @@
-.contributed-repos-container{
+@import "../../../styles/mixins";
+
+.contributed-repos-container {
     margin-top: 2em;
-    // 남은 공간만큼 
-    width: 600px;
-    .repos{
+    // 남은 공간만큼
+
+    @media #{$condition-desktop} {
+        width: 600px;
+    }
+
+    @media #{ $condition-mobile } {
+        width: 100%;
+    }
+
+    .repos {
         height: fit-content;
+        width: 100%;
         // 저장소 아이템
-        .repo-item{
+        .repo-item {
             background-color: #363d4f;
             box-shadow: rgba(12, 12, 13, 0.74) 2px 2px;
-            border-radius: .5em;
-            padding: 1em 1.5em;
+            border-radius: 0.5em;
             margin-bottom: 1em;
             width: 100%;
-
             display: flex;
             flex-direction: column;
-            .header{
+            padding: 1em 1.5em;    
+
+            @media #{$condition-desktop} {
+                width: 100%;
+                padding: 1em 1.5em;    
+            }
+        
+            @media #{ $condition-mobile } {
+                width: initial;
+                padding: 20px;    
+            }
+
+            .header {
                 height: 100%;
-                
-                p{ margin: 0; padding:0; color:#fff; }
-                .sub-title{
-                    margin: 0; 
-                    font-size: .8em;
+
+                p {
+                    margin: 0;
+                    padding: 0;
+                    color: #fff;
                 }
-                .title{
-                    font-size: 1.5em;
-                    line-height: 1.3em;
-                    
+                .sub-title {
+                    margin: 0;
+                    font-size: 0.8em;
+                }
+                .title {
+                    word-break: break-all;
                     color: #fff;
                     text-decoration: none;
-                    &:hover{
+
+                    @media #{$condition-desktop} {
+                        font-size: 1.5em;
+                        line-height: 1.3em;
+                    }
+                
+                    @media #{ $condition-mobile } {
+                        font-size: 1.3em;
+                    }
+
+                    &:hover {
                         text-decoration: underline;
                     }
                 }
-                .desc{ font-size: .9em; margin-top : .5em; }
-                .languages{
-                    margin-top:.5em;
+                .desc {
+                    font-size: 0.8em;
+                    margin-top: 0.5em;
+
+                    @media #{$condition-desktop} {
+                        font-size: 0.9em;
+                    }
+                
+                    @media #{ $condition-mobile } {
+                        font-size: 0.8em;
+                    }
+                }
+                .languages {
                     width: 100%;
-                    flex-wrap:wrap;
+                    flex-wrap: wrap;
                     display: flex;
                     flex-direction: row;
                     justify-content: flex-start;
-                    .language{
+
+                    @media #{ $condition-desktop }{
+                        margin-top: 0.5em;
+                    }
+
+                    @media #{ $condition-mobile }{
+                        margin-top: 3vh;;
+                    }
+
+                    .language {
                         display: flex;
                         flex-direction: row;
                         justify-content: flex-start;
                         align-items: center;
-                        margin-right: .5em;
-                        margin-bottom: .2em;
-                        .color{
+                        margin-right: 0.5em;
+                        margin-bottom: 0.2em;
+                        .color {
                             width: 15px;
                             height: 15px;
                             display: flex;
                             border-radius: 50%;
                             // DEFAULT COLOR
-                            background-color:#5c6580;   
+                            background-color: #5c6580;
                         }
-                        .name{
+                        .name {
                             width: max-content;
-                            font-size: .7em;
-                            line-height: .7em;
-                            margin : 0 .3em;
+                            font-size: 0.7em;
+                            line-height: 0.7em;
+                            margin: 0 0.3em;
                         }
-                        .percentage{
-                            font-size: .7em;
-                            line-height: .7em;
+                        .percentage {
+                            font-size: 0.7em;
+                            line-height: 0.7em;
                         }
-                    }   
+                    }
                 }
-                .languages-percentage-bar{
+                .languages-percentage-bar {
                     width: 100%;
-                    height : .2em;
+                    height: 0.2em;
                     display: flex;
                     flex-direction: row;
-                    margin-top:.8em;
+                    margin-top: 0.8em;
                     // DEFAULT COLOR
-                    .language-percentage{background-color: #5c6580;}
+                    .language-percentage {
+                        background-color: #5c6580;
+                    }
                 }
             }
-            .content{
-                .title{
-                    color:#fff;
-                    margin-top:.5em;
-                    margin-bottom:.8em;
+            .content {
+                margin-top: 20px;
+
+                .title {
+                    color: #fff;
+                    margin-top: 0.5em;
+                    margin-bottom: 0.8em;
                 }
-                .users{
+                .users {
                     display: flex;
                     flex-direction: row;
                     width: 100%;
                     overflow-y: auto;
                     padding-bottom: 1em;
-                    .user{
+                    .user {
                         cursor: pointer;
                         width: fit-content;
                         display: flex;
@@ -98,23 +154,30 @@
                         justify-content: center;
                         align-items: center;
                         margin-right: 1em;
-                        p{ margin:0; padding:0; }
-                        .avatar{
-                            $avatar-size-small : 60px;
+                        p {
+                            margin: 0;
+                            padding: 0;
+                        }
+                        .avatar {
+                            $avatar-size-small: 60px;
                             border-radius: 50%;
                             width: fit-content;
                             overflow: hidden;
                             width: $avatar-size-small;
                             height: $avatar-size-small;
-                            img{ width: $avatar-size-small; height : $avatar-size-small; }
+                            img {
+                                width: $avatar-size-small;
+                                height: $avatar-size-small;
+                            }
                         }
-                        .name{
-                            margin-top:.5em;
-                            color:#fff;
-                            font-size: .8em;
+                        .name {
+                            margin-top: 0.5em;
+                            color: #fff;
+                            font-size: 0.8em;
+                            text-align: center;
                         }
-                        &:hover{
-                            .name{
+                        &:hover {
+                            .name {
                                 text-decoration: underline;
                             }
                         }

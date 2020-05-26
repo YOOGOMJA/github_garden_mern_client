@@ -22,6 +22,8 @@ import UserListContent from './scenes/UserListScene/UserListContent';
 import SettingScene from './scenes/SettingScene';
 import InfoScene from './scenes/InfoScene';
 
+import { isMobile } from 'react-device-detect';
+
 const store = createStore(rootReducer, applyMiddleware(Thunk));
 
 ReactDOM.render(
@@ -34,24 +36,42 @@ ReactDOM.render(
             <Route exact path="/" component={MainScene} />
             <Route path="/register" component={RegisterUserScene} />
             <Route path="/users">
-              <div className="users-contents-container">
-                <div className="user-list">
-                  {/* 목록 페이지 */}
-                  <Route path="/users" component={UserListScene} />
+              {!isMobile ?
+                <div className="users-contents-container">
+                  <div className="user-list">
+                    {/* 목록 페이지 */}
+                    <Route path="/users" component={UserListScene} />
+                  </div>
+                  <div className="user-list-content">
+                    <Switch>
+                      <Route exact path="/users/" component={UserListContent} />
+                      {/* 유저 404 페이지 */}
+                      {/* <Route path="/users/" component={UserNotFoundScene} /> */}
+                      {/* 유저별 상세 페이지  */}
+                      <Route path="/users/:user_name" component={UserDetailScene} />
+                    </Switch>
+                  </div>
                 </div>
-                <div className="user-list-content">
+                : <div className="users-contents-container">
                   <Switch>
-                    <Route exact path="/users/" component={UserListContent} />
-                    {/* 유저 404 페이지 */}
-                    {/* <Route path="/users/" component={UserNotFoundScene} /> */}
+                    {/* 목록 페이지 */}
+                    <Route exact path="/users">
+                      <div className="user-list">
+                        <UserListScene />
+                      </div>
+                    </Route>
                     {/* 유저별 상세 페이지  */}
-                    <Route path="/users/:user_name" component={UserDetailScene} />
+                    <Route path="/users/:user_name">
+                      <div className="user-list-content">
+                        <UserDetailScene />
+                      </div>
+                    </Route>
                   </Switch>
                 </div>
-              </div>
+              }
             </Route>
-            <Route path="/info" component={ InfoScene } />
-            <Route path="/settings" component={ SettingScene } />
+            <Route path="/info" component={InfoScene} />
+            <Route path="/settings" component={SettingScene} />
             <Route path="*" component={NotFoundScene} />
           </Switch>
 

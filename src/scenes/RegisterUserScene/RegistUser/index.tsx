@@ -19,7 +19,7 @@ const RegistUser = (props: RegisterUserProps) => {
     const [errorMesg, setErrorMesg] = useState("");
     const [inputMode, setInputMode] = useState(INPUT_MODE_FORM);
     const [userName, setUserName] = useState("");
-    const [insertedUserName, setInsertedUserName]= useState("");
+    const [insertedUserName, setInsertedUserName] = useState("");
     const [isRequested, setIsRequested] = useState(false);
     const dispatch = useDispatch();
 
@@ -29,21 +29,21 @@ const RegistUser = (props: RegisterUserProps) => {
         }
         else {
             setErrorMesg("");
-            if(post_user.data){
-                if(post_user.data.code < 0){
+            if (post_user.data) {
+                if (post_user.data.code < 0) {
                     // 오류인 경우
-                    if(post_user.data.code === -1){
+                    if (post_user.data.code === -1) {
                         setErrorMesg(post_user.data.message.toString());
                     }
-                    else if(post_user.data.error && post_user.data.code === -2){
-                        if(post_user.data.error.statusCode === 404){
+                    else if (post_user.data.error && post_user.data.code === -2) {
+                        if (post_user.data.error.statusCode === 404) {
                             setErrorMesg('존재하지 않는 사용자 입니다');
                         }
-                        else{
+                        else {
                             setErrorMesg(`github 응답이 올바르지 않습니다 | ${post_user.data.error.message || post_user.data.error.code}`);
                         }
                     }
-                    else{
+                    else {
                         setErrorMesg("데이터를 가져오는 중 오류가 발생했습니다");
                     }
                 }
@@ -55,15 +55,15 @@ const RegistUser = (props: RegisterUserProps) => {
                 }
             }
         }
-        return ()=>{
+        return () => {
             setErrorMesg("");
             setUserName("");
         }
     }, [post_user.error, post_user.data]);
-    useEffect(()=>{
+    useEffect(() => {
         setIsRequested(post_user.loading);
-    },[post_user.loading]);
-    useEffect(()=>{
+    }, [post_user.loading]);
+    useEffect(() => {
         return function () {
             setInsertedUserName("");
             setErrorMesg("");
@@ -71,12 +71,12 @@ const RegistUser = (props: RegisterUserProps) => {
             setInputMode(INPUT_MODE_FORM);
             dispatch(clearPostUserInfoThunk());
         }
-    },[]);
+    }, []);
 
-    
+
     const fn = {
         submit: () => {
-            if(isRequested){ alert("이미 요청 중 입니다. 잠시만 기다려주세요."); return;}
+            if (isRequested) { alert("이미 요청 중 입니다. 잠시만 기다려주세요."); return; }
             dispatch(postUserInfoThunk(userName.trim()));
         }
     }
@@ -86,10 +86,15 @@ const RegistUser = (props: RegisterUserProps) => {
         getForm: () => {
             if (inputMode === INPUT_MODE_FORM) {
                 return <div className="wrapper">
-                    <input type="text" placeholder="github 유저 계정을 입력해주세요" className="input-user-name" value={ userName } onChange={ e=>setUserName(e.target.value) } onKeyPress={ e=>{if(e.which === 13 || e.keyCode === 13){ /*setUserName(e.currentTarget.value); fn.submit();*/ }} }/>
+                    <div className="form" >
+                        <input placeholder=" " type="text" className="input-user-name" value={userName} onChange={e => setUserName(e.target.value)} onKeyPress={e => { if (e.which === 13 || e.keyCode === 13) { /*setUserName(e.currentTarget.value); fn.submit();*/ } }} />
+                        <label className="label-user-name">
+                            <span>Github 계정명</span>
+                        </label>
+                    </div>
                     <button type="button" className="btn" onClick={fn.submit}>
                         {
-                            isRequested ? <Indicator/> : "등록"
+                            isRequested ? <Indicator /> : "등록"
                         }
                     </button>
                 </div>;
@@ -105,7 +110,7 @@ const RegistUser = (props: RegisterUserProps) => {
     }
 
     return (<div className="register-user">
-        { errorMesg !== "" ? <p className="text error">{errorMesg}</p> : <></> }
+        {errorMesg !== "" ? <p className="text error">{errorMesg}</p> : <></>}
         {ui.getForm()}
     </div>);
 }
