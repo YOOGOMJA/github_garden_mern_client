@@ -1,20 +1,26 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import "./UserListScene.scss";
 
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../modules';
-import { clearUsersSearchThunk, getUsersInfoThunk } from '../../modules/user/thunks';
+import { clearUsersSearchThunk, getUsersInfoThunk, getUsersSearchThunk, clearUsersInfoThunk } from '../../modules/user/thunks';
 import { Link } from 'react-router-dom';
 import UserInfoInterface from '../../api/interfaces/UserInfo';
 
+import AnimatedTextInput from '../../components/AnimatedTextInput';
+
 const UserListScene = () => {
-    const { users } = useSelector((state: RootState) => state.user);
+    const { users, searched_users } = useSelector((state: RootState) => state.user);
     const dispatch = useDispatch();
     const avatar_size = 80;
 
+    const [ keyword, setKeyword ] = useState("");
+    const [ isSearchMode , setIsSearchMode ] = useState(false);
+
     useEffect(() => {
-        dispatch(getUsersInfoThunk());
+        console.log('init');
+        dispatch(getUsersInfoThunk());   
         return () => {
             dispatch(clearUsersSearchThunk());
         }
@@ -31,9 +37,10 @@ const UserListScene = () => {
     }
 
     const ui = {
-        user: () => {
-            if (users.data && users.data.data) {
-                return users.data.data.map(user => {
+        user: (_users?:[UserInfoInterface]) => {
+            if(_users === null || _users === undefined){ console.log('empty'); return <></>; }
+            else{
+                return _users.map((user:UserInfoInterface) => {
                     return (
                         <div key={ user.id.toString() } className="user-container">
                             <div className="avatar-wrapper">
@@ -49,8 +56,26 @@ const UserListScene = () => {
                     );
                 });
             }
-            else {
-                return <></>;
+        }
+    }
+
+    const fn = {
+        search : {
+            excute : function(){
+                if(keyword.trim().length > 0){
+                    setIsSearchMode(true);
+                    dispatch( getUsersSearchThunk(keyword) );
+                    dispatch( clearUsersInfoThunk() );
+                }
+                else{
+                    window.alert('검색어를 입력해주세요');
+                }
+            },
+            cancel : function(){
+                setIsSearchMode(false);
+                setKeyword("");
+                dispatch( getUsersInfoThunk() );
+                dispatch( clearUsersSearchThunk() );
             }
         }
     }
@@ -62,14 +87,28 @@ const UserListScene = () => {
             </h1>
             <div className="header-content">
                 <div className="search-wrapper">
-                    <input className="search-input" type="text" />
-                    <button className="search-btn" type="button">검색</button>
+                    <AnimatedTextInput 
+                        title="github 계정명"
+                        value={ keyword } 
+                        style={ { flex : 9 } }
+                        onChange={ (e:React.ChangeEvent<HTMLInputElement>)=>setKeyword(e.target.value) }
+                        isDisabled={ isSearchMode }
+                        />
+                    {
+                        !isSearchMode 
+                        ? <button className="search-btn" type="button" onClick={fn.search.excute}>검색</button> 
+                        : <button className="search-btn cancel" type='button' onClick={fn.search.cancel} >취소</button>
+                    }
                 </div>
             </div>
         </div>
 
         <div className="content-wrapper">
-            { ui.user() }
+            { 
+                !isSearchMode ? 
+                ui.user(users.data?.data) :
+                ui.user(searched_users.data?.data)
+            }
         </div>
     </div>);
 }

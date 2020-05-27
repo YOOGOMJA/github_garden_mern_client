@@ -50,12 +50,16 @@
                         font-weight: 100;
                     }
                     .search-btn{
-                        flex:2;
+                        align-self: flex-end;
+                        flex:3;
                         width: 100%;
                         background-color: rgba(0,0,0,0);
                         border: none;
                         color: #fff;
                         font-size: 1.3em;
+                        &.cancel{
+                            color: $colors-red;
+                        }
                     }
                 }
             }
