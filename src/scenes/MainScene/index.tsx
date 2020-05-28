@@ -24,11 +24,14 @@ import {
     from '../../modules/analytics';
 import { getUsersParticipatedLatestChallengeThunk } from '../../modules/user';
 import { RootState } from '../../modules';
+import { isNullOrUndefined } from 'util';
+import { useHistory } from 'react-router-dom';
 
 const MainScene = (props: any) => {
     const { summary, all_attendances, languages , popular_repo , hottest_repo, all_attendances_by_dates } = useSelector((state: RootState) => state.analytics);
     const { users_participated_latest_challenge } = useSelector((state: RootState) => state.user);
     const dispatch = useDispatch();
+    const history = useHistory();
 
     useEffect(() => {
         dispatch(getSummaryThunk());
@@ -40,6 +43,14 @@ const MainScene = (props: any) => {
         dispatch(getAllAttendancesByDatesThunk());
     }, [dispatch]);
 
+    useEffect(()=>{
+        if(!isNullOrUndefined(summary) && !isNullOrUndefined(summary.data)){
+            if(summary.data.data.current_challenge.title === ""){
+                alert('생성된 도전기간이 없습니다. 도전 기간을 먼저 생성해주세요');
+                history.push('/settings');
+            }
+        }
+    },[summary, summary.data]);
     return (
         <div className="contents">
             <div className="header">

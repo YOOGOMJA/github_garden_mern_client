@@ -14,7 +14,7 @@ const AllAttendanceChart = (props: AllAttendanceChartProps) => {
     const [displayDates, setDisplayDates] = useState(initialDates);
 
     useEffect(() => {
-        if(props.attendances){
+        if(props.attendances && props.attendances != null && props.attendances.data.length > 0 ){
             let newDates: moment.Moment[] = [];
             Object.keys(props.attendances.data[0].attendances).forEach(key=>{
                 newDates.push(moment(key));
@@ -72,7 +72,7 @@ const AllAttendanceChart = (props: AllAttendanceChartProps) => {
                                         }
                                     </tr>
                                 );
-                            }) : ""
+                            }) : <></>
                         }
                     </tbody>
                 </table>

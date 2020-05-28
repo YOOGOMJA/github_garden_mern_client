@@ -2,6 +2,7 @@ import React, { CSSProperties, useState, useEffect } from 'react';
 import { Card } from '../../../components';
 import Colors from '../../../components/Colors.json';
 import { HottestRepository } from '../../../api/analytics';
+import { isNullOrUndefined } from 'util';
 
 interface HottestRepostoryProps {
     repo: HottestRepository | null,
@@ -12,41 +13,62 @@ const HottestRepositoryInfo = (props: HottestRepostoryProps) => {
     const [repoName, setRepoName] = useState("");
     const [languageCnt, setLanguageCnt] = useState(0);
     useEffect(() => {
-        console.log(props.repo);
-        if (props.repo !== null) {
+        if (!isNullOrUndefined(props) && !isNullOrUndefined(props.repo) && !isNullOrUndefined(props.repo.data) && !isNullOrUndefined(props.repo.data) && !isNullOrUndefined(props.repo.data.repo)) {
             const name = props.repo.data.repo.name.split("/");
-            
+
             setOwner(name[0] + "/");
             setRepoName(name[1]);
             setLanguageCnt(props.repo.data.repo.languages.length);
         }
     }, [props, props.repo]);
-    return (<div style={styles.container}>
-        <Card title="가장 바쁜 저장소🔥" desc="최근 가장 커밋이 많은 저장소입니다">
-            <div style={styles.wrapper}>
-                <div style={itemStyles.container}>
-                    <p style={{ ...itemStyles.text, ...itemStyles.owner }}>{owner}</p>
-                    <p style={{ ...itemStyles.text, ...itemStyles.title }}>{repoName}</p>
-                    <p style={{ ...itemStyles.text, ...itemStyles.owner }}>{props.repo?.data.repo.description}</p>
-                    <div style={itemStyles.factorContainer}>
-                        <div style={itemStyles.factorItemContainer}>
-                            <p style={{ ...itemStyles.text, ...itemStyles.factorTitle }}>{props.repo?.data.commit_cnt}</p>
-                            <p style={{ ...itemStyles.text, ...itemStyles.factorDesc }}>커밋</p>
-                        </div>
-                        <div style={itemStyles.factorItemContainer}>
-                            <p style={{ ...itemStyles.text, ...itemStyles.factorTitle }}>{props.repo?.data.repo.contributor.length}</p>
-                            <p style={{ ...itemStyles.text, ...itemStyles.factorDesc }}>참여자</p>
-                        </div>
-                        <div style={itemStyles.factorItemContainer}>
-                            <p style={{ ...itemStyles.text, ...itemStyles.factorTitle }}>{languageCnt}</p>
-                            <p style={{ ...itemStyles.text, ...itemStyles.factorDesc }}>사용된 언어</p>
+
+    if (isNullOrUndefined(props) || isNullOrUndefined(props.repo) || isNullOrUndefined(props.repo.data) || isNullOrUndefined(props.repo.data.repo)) {
+        return (<div style={styles.container}>
+            <Card title="가장 바쁜 저장소🔥" desc="최근 가장 커밋이 많은 저장소입니다">
+                <div style={styles.wrapper}>
+                    <div style={itemStyles.container}>
+                        <p style={{
+                                color:'#fff',
+                                fontSize:'1.2em',
+                                textAlign:'center',
+                            }}>
+                                저장소가 존재하지 않습니다
+                        </p>
+                    </div>
+                </div>
+            </Card>
+        </div>);
+    }
+    else {
+        return (<div style={styles.container}>
+            <Card title="가장 바쁜 저장소🔥" desc="최근 가장 커밋이 많은 저장소입니다">
+                <div style={styles.wrapper}>
+                    <div style={itemStyles.container}>
+                        <p style={{ ...itemStyles.text, ...itemStyles.owner }}>{owner}</p>
+                        <p style={{ ...itemStyles.text, ...itemStyles.title }}>{repoName}</p>
+                        <p style={{ ...itemStyles.text, ...itemStyles.owner }}>{props.repo?.data.repo.description}</p>
+                        <div style={itemStyles.factorContainer}>
+                            <div style={itemStyles.factorItemContainer}>
+                                <p style={{ ...itemStyles.text, ...itemStyles.factorTitle }}>{props.repo?.data.commit_cnt}</p>
+                                <p style={{ ...itemStyles.text, ...itemStyles.factorDesc }}>커밋</p>
+                            </div>
+                            <div style={itemStyles.factorItemContainer}>
+                                <p style={{ ...itemStyles.text, ...itemStyles.factorTitle }}>{props.repo?.data.repo.contributor.length}</p>
+                                <p style={{ ...itemStyles.text, ...itemStyles.factorDesc }}>참여자</p>
+                            </div>
+                            <div style={itemStyles.factorItemContainer}>
+                                <p style={{ ...itemStyles.text, ...itemStyles.factorTitle }}>{languageCnt}</p>
+                                <p style={{ ...itemStyles.text, ...itemStyles.factorDesc }}>사용된 언어</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </Card>
-    </div>);
+            </Card>
+        </div>);
+    }
 }
+
+
 
 const styles: { [name: string]: CSSProperties } = {
     container: {
