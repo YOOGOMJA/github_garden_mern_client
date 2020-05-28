@@ -6,23 +6,36 @@ import HighchartsReact from 'highcharts-react-official';
 import { AllAttendancesByDates } from '../../../api/analytics';
 import moment from 'moment';
 
+import { HighChartsTheme_Dark } from '../../../components/HighChartsTheme';
+
 interface AttendanceByDayProps {
     attendances : AllAttendancesByDates| null,
 }
 
 const AttendanceByDay = (props:AttendanceByDayProps)=>{
     const initialOptions:any = {
-        title: undefined,
-        chart: {
-            type: "line"
+        ...HighChartsTheme_Dark,
+        chart : {
+            ...HighChartsTheme_Dark.chart,
+            type : "line",
+            // width:700,
         },
-        xAxis: {
-            type:"category"
+        xAxis : {
+            ...HighChartsTheme_Dark.xAxis,
+            type : "category",
+            // scrollbar: {
+            //     enabled: true
+            // }
+        },
+        yAxis : {
+            ...HighChartsTheme_Dark.yAxis,
+            max : 100
         },
         series: [
             {
                 name: "출석률",
-                data:[]
+                data:[],
+                tooltip: { pointFormat: '<span style="color:{point.color}">●</span> {series.name}: <b>{point.y:.1f}%</b><br/>' },
             }
         ]
     };
@@ -62,6 +75,8 @@ const styles:{ [name:string]: CSSProperties } = {
     },
     wrapper: {
         marginTop: '2em',
+        width:'100%',
+        // overflowX:'auto',
     }
 }
 

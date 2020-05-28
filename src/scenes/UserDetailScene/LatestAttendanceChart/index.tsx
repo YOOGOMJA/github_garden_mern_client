@@ -6,17 +6,22 @@ import HighchartsReact from 'highcharts-react-official';
 import moment from 'moment';
 import './LatestAttendanceChart.scss';
 
+import { HighChartsTheme_Dark } from '../../../components/HighChartsTheme';
+
 interface LatestAttendanceChartProps {
     data: LatestChallengeAttendancesByUserReponse | null
 }
 
 const LatestAttendanceChart = (props: LatestAttendanceChartProps) => {
     const initialOptions:any = {
-        title: undefined,
-        chart:{
-            type: "line",
+        ...HighChartsTheme_Dark,
+        chart : {
+            ...HighChartsTheme_Dark.chart,
+            type : "line",
+            
         },
         xAxis:{
+            ...HighChartsTheme_Dark.xAxis,
             type:"category",
         },
         series:[{
@@ -36,6 +41,8 @@ const LatestAttendanceChart = (props: LatestAttendanceChartProps) => {
                 });
             }
             let _options = { ...initialOptions };
+            _options.series[0].title = "일별 출석률";
+            _options.series[0].tooltip = {pointFormat : '<span style="color:{point.color}">●</span> {series.name}: <b>{point.y} 건</b><br/>'};
             _options.series[0].data = _series;
             setChartOptions(_options);
         }
