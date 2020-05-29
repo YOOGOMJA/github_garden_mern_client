@@ -82,7 +82,7 @@
                 display: flex;
                 flex-direction: row;
                 align-items: center;
-                padding: 10px 0;
+                padding: 15px 0;
                 border-bottom: 1px solid #5c6680;
 
                 .avatar-wrapper{
@@ -94,8 +94,8 @@
                     justify-content: center;
                     align-items: center;
                     .avatar{
-                        width: 80px;
-                        height: 80px;
+                        width: 65px;
+                        height: 65px;
                     }
                 }
                 
@@ -108,6 +108,7 @@
 
                     .login{
                         font-size: 1.4em;
+                        line-height: 1.2em;
                         font-weight: 100;
                     }
                     .user-name{

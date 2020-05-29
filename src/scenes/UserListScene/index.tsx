@@ -13,7 +13,7 @@ import AnimatedTextInput from '../../components/AnimatedTextInput';
 const UserListScene = () => {
     const { users, searched_users } = useSelector((state: RootState) => state.user);
     const dispatch = useDispatch();
-    const avatar_size = 80;
+    const avatar_size = 70;
 
     const [ keyword, setKeyword ] = useState("");
     const [ isSearchMode , setIsSearchMode ] = useState(false);
