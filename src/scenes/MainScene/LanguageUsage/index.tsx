@@ -4,6 +4,8 @@ import * as Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 import { Languages } from '../../../api/analytics';
 
+import { HighChartsTheme_Dark } from '../../../components/HighChartsTheme';
+
 interface LanguageUsageProps {
     loading: boolean,
     error: Error | null,
@@ -12,10 +14,42 @@ interface LanguageUsageProps {
 
 const LanguageUsage = (props: LanguageUsageProps) => {
     const initialOptions = {
-        title: undefined,
-        chart: {
-            type: "pie",
+        ...HighChartsTheme_Dark,
+        title : {
+            text: "",
         },
+        chart : {
+            ...HighChartsTheme_Dark.chart,
+            type : "pie",
+        },
+        tooltip: {
+            ...HighChartsTheme_Dark.tooltip,
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        accessibility: {
+            point: {
+                valueSuffix: '%'
+            }
+        },    
+        plotOptions: {
+            ...HighChartsTheme_Dark.plotOptions,
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                    // enabled: false,
+                    enabled: true,
+                    format: '<b>{point.name}</b><br>{point.percentage:.1f} %',
+                    distance: -50,
+                    filter: {
+                        property: 'percentage',
+                        operator: '>',
+                        value: 1
+                    }
+                },
+                showInLegend: true,
+            }
+        },    
         series: [
             {
                 name: "점유율",

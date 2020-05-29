@@ -28,7 +28,7 @@ import { isNullOrUndefined } from 'util';
 import { useHistory } from 'react-router-dom';
 
 const MainScene = (props: any) => {
-    const { summary, all_attendances, languages , popular_repo , hottest_repo, all_attendances_by_dates } = useSelector((state: RootState) => state.analytics);
+    const { summary, all_attendances, languages, popular_repo, hottest_repo, all_attendances_by_dates } = useSelector((state: RootState) => state.analytics);
     const { users_participated_latest_challenge } = useSelector((state: RootState) => state.user);
     const dispatch = useDispatch();
     const history = useHistory();
@@ -43,19 +43,19 @@ const MainScene = (props: any) => {
         dispatch(getAllAttendancesByDatesThunk());
     }, [dispatch]);
 
-    useEffect(()=>{
-        if(!isNullOrUndefined(summary) && !isNullOrUndefined(summary.data)){
-            if(summary.data.data.current_challenge.title === ""){
+    useEffect(() => {
+        if (!isNullOrUndefined(summary) && !isNullOrUndefined(summary.data)) {
+            if (summary.data.data.current_challenge.title === "") {
                 alert('생성된 도전기간이 없습니다. 도전 기간을 먼저 생성해주세요');
                 history.push('/settings');
             }
         }
-    },[summary, summary.data]);
+    }, [summary, summary.data]);
     return (
         <div className="contents">
             <div className="header">
                 <h1>
-                    안녕하세요!<br className="line-break"/><b>정원사 프로젝트</b>입니다!
+                    안녕하세요!<br className="line-break" /><b>정원사 프로젝트</b>입니다!
                 </h1>
             </div>
             <Jumbotron summary={summary.data} error={summary.error} loading={summary.loading} />
@@ -65,7 +65,7 @@ const MainScene = (props: any) => {
                     <AttendanceRatesRank attendances={all_attendances.data} />
                 </div>
                 <div className="flex-item">
-                    <AttendanceByDay attendances={ all_attendances_by_dates.data }/>
+                    <AttendanceByDay attendances={all_attendances_by_dates.data} />
                 </div>
             </div>
             {/* 영역을 셋으로 나눔 */}
@@ -82,25 +82,29 @@ const MainScene = (props: any) => {
                             <div className="flex-item" >
                                 <HottestRepository repo={hottest_repo.data} />
                             </div>
-                        </>    
-                    ) : 
-                    (
-                        <div className="flex-item" >
-                            <PopularRepositories repo={popular_repo.data} />
-                            <HottestRepository repo={hottest_repo.data} />
-                        </div>
-                    )
+                        </>
+                    ) :
+                        (
+                            <div className="flex-item" >
+                                <PopularRepositories repo={popular_repo.data} />
+                                <HottestRepository repo={hottest_repo.data} />
+                            </div>
+                        )
                 }
-                
+
                 <div className="flex-item" style={{ flex: 3 }}>
                     <AttendentList users={users_participated_latest_challenge.data} />
                 </div>
             </div>
-            <div className="flex-items">
-                <div className="flex-item">
-                    <AllAttendanceChart attendances={all_attendances.data} />
-                </div>
-            </div>
+            {
+                !isMobile ?
+                <div className="flex-items">
+                    <div className="flex-item">
+                        <AllAttendanceChart attendances={all_attendances.data} />
+                    </div>
+                </div> :
+                <></>
+            }
         </div>
     );
 }

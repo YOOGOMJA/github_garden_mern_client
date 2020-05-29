@@ -50,7 +50,7 @@ export default {
             }
         }
     },
-    tooltop: {
+    tooltip: {
         backgroundColor: 'rgba(0, 0, 0, 0.85)',
         style: {
             color: '#F0F0F0'
